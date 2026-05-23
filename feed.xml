@@ -2,21 +2,21 @@
 <rss version="2.0">
   <channel>
     <title>光明螺旋</title>
-    <link>https://snoooooow.github.io/blog/</link>
+    <link>https://jy.me/</link>
     <description>Updates from Jingyu.</description>
     <item>
       <title>第一篇</title>
-      <link>https://snoooooow.github.io/blog/#post-first</link>
+      <link>https://jy.me/#post-first</link>
       <description>这个中二的小站名字是我梦中出现的名字。</description>
     </item>
     <item>
       <title>有时候人会忘记把自己当做是个人看</title>
-      <link>https://snoooooow.github.io/blog/#post-wang-xiaobo</link>
+      <link>https://jy.me/#post-wang-xiaobo</link>
       <description>重读《思维的乐趣》杂文集。</description>
     </item>
     <item>
       <title>一月</title>
-      <link>https://snoooooow.github.io/blog/#post-january</link>
+      <link>https://jy.me/#post-january</link>
       <description>关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。</description>
     </item>
   </channel>
