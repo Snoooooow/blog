@@ -11,7 +11,7 @@ const pages = {
           <div class="rule"></div>
           <div class="bio">
             <p>I use this site as a home base for notes, projects, reading, photography, and experiments that do not fit neatly anywhere else.</p>
-            <p>The original blog content from GitHub Pages is merged here, including the first post and the Wang Xiaobo reading note.</p>
+            <p>The original blog content from GitHub Pages is merged here, including the first post, the Wang Xiaobo reading note, and the January note.</p>
             <p>I care about useful software, clear thinking, durable systems, and the craft behind turning ideas into working things.</p>
             <p>Outside work I <a class="inline-link" href="#books" data-route="books">read</a>, take <a class="inline-link" href="#photos" data-route="photos">photos</a>, and keep a small record of what I am learning.</p>
           </div>
@@ -21,7 +21,7 @@ const pages = {
   },
   blog: {
     title: "Blog",
-    text: "第一篇 有时候人会忘记把自己当做是个人看 思维的乐趣 王小波 光明螺旋 writing essays notes.",
+    text: "第一篇 有时候人会忘记把自己当做是个人看 思维的乐趣 王小波 一月 光明螺旋 writing essays notes.",
     render: () => `
       <section class="page">
         <h1>Blog</h1>
@@ -34,6 +34,10 @@ const pages = {
           <a class="item item-link" href="#post-wang-xiaobo" data-route="post-wang-xiaobo">
             <h2>有时候人会忘记把自己当做是个人看</h2>
             <p>重读《思维的乐趣》杂文集的长读书笔记，关于王小波、思维、自由、传统和真实表达。</p>
+          </a>
+          <a class="item item-link" href="#post-january" data-route="post-january">
+            <h2>一月</h2>
+            <p>关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。</p>
           </a>
           <article class="item">
             <h2>Designing small systems well</h2>
@@ -52,6 +56,10 @@ const pages = {
     <p>王小波的文章常常在提醒人不要忘记把自己当作一个会思考的人。文章里对盲目崇高、传统权威、形式主义和不讲逻辑的批评，现在读起来依然有锋利的现实感。</p>
     <p>这篇旧文保留了原博客的核心内容：读王小波，想自由表达，想基本逻辑，想一个人怎样在令人窒息的环境里仍然保留思想的氧气。</p>
     <p>原始长文仍保存在仓库的 <code>_posts/2020-02-02-有时候人会忘记把自己当做是个人看 -- 重读《思维的乐趣》杂文集.markdown</code>。</p>
+  `),
+  "post-january": post("一月", "2023-01-28", `
+    <p>对于 level / 管理者的祛魅。</p>
+    <p>行为产生目的，目的又产生更多相关行为。以至于前后无从分清。</p>
   `),
   links: page("Links", "Curated links from around the web.", [
     ["Engineering", "References and articles worth returning to."],
