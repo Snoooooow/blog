@@ -1,7 +1,7 @@
 const pages = {
   home: {
     title: "Home",
-    text: "Jingyu 光明螺旋 Snoooooow personal website homepage software projects writing photos books keyboards now weeks.",
+    text: "Jingyu 光明螺旋 Snoooooow personal website homepage software projects writing books weeks now.",
     render: () => `
       <section class="home">
         <div class="portrait" role="img" aria-label="Jingyu profile placeholder"></div>
@@ -10,10 +10,10 @@ const pages = {
           <p class="tagline">This is 光明螺旋, a small home for writing, projects, and notes.</p>
           <div class="rule"></div>
           <div class="bio">
-            <p>I use this site as a home base for notes, projects, reading, photography, and experiments that do not fit neatly anywhere else.</p>
+            <p>I use this site as a home base for notes, projects, reading, and experiments that do not fit neatly anywhere else.</p>
             <p>The original blog content from GitHub Pages is merged here, including the first post, the Wang Xiaobo reading note, and the January note.</p>
             <p>I care about useful software, clear thinking, durable systems, and the craft behind turning ideas into working things.</p>
-            <p>Outside work I <a class="inline-link" href="#books" data-route="books">read</a>, take <a class="inline-link" href="#photos" data-route="photos">photos</a>, and keep a small record of what I am learning.</p>
+            <p>Outside work I <a class="inline-link" href="#books" data-route="books">read</a> and keep a small record of what I am learning.</p>
           </div>
         </div>
       </section>
@@ -71,34 +71,46 @@ const pages = {
     ["Want to read", "A queue for research, software, biography, and systems thinking."]
   ]),
   projects: page("Projects", "Projects and prototypes.", [
-    ["Personal website", "A compact static site with search, navigation, dark mode, and responsive pages."],
+    ["Personal website", "A compact static site with search, navigation, and responsive pages."],
     ["Workbench", "A collection of experiments that are too small for standalone repositories."]
-  ]),
-  photos: page("Photos", "Photography portfolio.", [
-    ["Everyday light", "Small scenes, city walks, and travel frames."],
-    ["Albums", "Grouped photo sets can live here when the real images are ready."]
-  ]),
-  keyboards: page("Keyboard Gallery", "Mechanical keyboard collection.", [
-    ["Builds", "Layouts, switches, keycaps, and notes from keyboard projects."],
-    ["Desk setup", "A simple inventory for tools and daily-driver gear."]
-  ]),
-  keycaps: page("Keycaps", "Keycap sets database.", [
-    ["Sets", "A searchable index can be connected here."],
-    ["Profiles", "Reference notes for sculpt, material, and color matching."]
-  ]),
-  alexotos: page("alexotos", "Keycaps from alexotos videos.", [
-    ["Video index", "A placeholder for cataloging sets by video and timestamp."]
   ]),
   weeks: {
     title: "Weeks",
-    text: "Life in weeks visualization grid.",
+    text: "Life in weeks visualization Birth Teens 20s 30s 40s 50s 60s 70s 80s Wait But Why World Wide Web Berlin Wall Windows 95 9/11 ChatGPT.",
     render: () => {
-      const cells = Array.from({ length: 52 * 18 }, (_, i) => `<span class="week ${i < 52 * 7 ? "filled" : ""}"></span>`).join("");
+      const birthYear = 1987;
+      const currentAge = 40;
+      const eventByAge = Object.fromEntries(weekEvents.map((event) => [event.age, event]));
+      const cells = Array.from({ length: 52 * 85 }, (_, i) => {
+        const age = Math.floor(i / 52) + 1;
+        const event = eventByAge[age];
+        const label = event ? `${event.year}: ${event.label}` : "";
+        return `<span class="week ${age <= currentAge ? "filled" : ""} ${event ? "has-event" : ""}" ${event ? `tabindex="0" data-label="${escapeHtml(label)}"` : ""}></span>`;
+      }).join("");
+      const yearList = Array.from({ length: 85 }, (_, i) => {
+        const age = i + 1;
+        const year = birthYear + i;
+        const event = eventByAge[age];
+        return `<div class="week-event"><strong>${age} in ${year}</strong><span>${event ? event.label : ""}</span></div>`;
+      })
+        .join("");
       return `
-        <section class="page">
-          <h1>Weeks</h1>
-          <p>A compact life-in-weeks visualization. The filled cells are placeholders and can be wired to a real birthday later.</p>
+        <section class="page weeks-page">
+          <h1>My Life in Weeks</h1>
+          <div class="week-legend">
+            <span>Birth</span>
+            <span>Teens</span>
+            <span>20s</span>
+            <span>30s</span>
+            <span>40s</span>
+            <span>50s</span>
+            <span>60s</span>
+            <span>70s</span>
+            <span>80s</span>
+          </div>
+          <p>Inspired by Wait But Why, adapted from Gina Trapani's project, and rebuilt for this site. Each row is one year; highlighted cells mark notable milestones from the reference timeline.</p>
           <div class="weeks-grid" aria-label="Life in weeks grid">${cells}</div>
+          <div class="week-events">${yearList}</div>
         </section>
       `;
     }
@@ -166,12 +178,6 @@ function currentRoute() {
   return window.location.hash.replace("#", "") || "home";
 }
 
-function setTheme(next) {
-  const theme = next || (document.documentElement.dataset.theme === "dark" ? "light" : "dark");
-  document.documentElement.dataset.theme = theme;
-  localStorage.setItem("jy-theme", theme);
-}
-
 function openSearch() {
   searchModal.classList.add("is-open");
   searchModal.setAttribute("aria-hidden", "false");
@@ -215,7 +221,6 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-open-search]")) openSearch();
   if (event.target.closest("[data-close-search]")) closeSearch();
   if (event.target.closest("[data-menu-toggle]")) mobileNav.classList.toggle("is-open");
-  if (event.target.closest("[data-theme-toggle]")) setTheme();
 });
 
 document.addEventListener("keydown", (event) => {
@@ -228,5 +233,46 @@ document.addEventListener("keydown", (event) => {
 
 searchInput.addEventListener("input", (event) => renderSearch(event.target.value));
 window.addEventListener("popstate", () => navigate(currentRoute()));
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+const weekEvents = [
+  { age: 1, year: 1987, label: "Born" },
+  { age: 2, year: 1988, label: "World Wide Web invented" },
+  { age: 3, year: 1989, label: "Berlin Wall falls" },
+  { age: 5, year: 1991, label: "Soviet Union dissolves" },
+  { age: 6, year: 1992, label: "Elementary school" },
+  { age: 8, year: 1994, label: "Windows 95 released" },
+  { age: 11, year: 1997, label: "Princess Diana dies" },
+  { age: 12, year: 1998, label: "Middle school" },
+  { age: 15, year: 2001, label: "9/11 attacks" },
+  { age: 16, year: 2002, label: "Boarding school; Iraq War begins" },
+  { age: 18, year: 2004, label: "Facebook founded" },
+  { age: 19, year: 2005, label: "Hurricane Katrina" },
+  { age: 20, year: 2006, label: "Met my future wife; iPhone announced" },
+  { age: 21, year: 2007, label: "Performing in Leipzig; first flight; exchange study in Hong Kong" },
+  { age: 22, year: 2008, label: "Lehman Brothers collapses; Bitcoin genesis block" },
+  { age: 23, year: 2009, label: "Married; US grad school; first photonics paper" },
+  { age: 25, year: 2011, label: "Fukushima nuclear disaster; Bin Laden killed; roadtrip across US; moved to Delaware" },
+  { age: 26, year: 2012, label: "Hardware startup; got into cycling" },
+  { age: 27, year: 2013, label: "First paper in electronics; moved to NYC" },
+  { age: 29, year: 2015, label: "Miami; China; got Mango" },
+  { age: 30, year: 2016, label: "Hawaii; quit hardware" },
+  { age: 31, year: 2017, label: "Works at AWS; mom visited US; first ML paper" },
+  { age: 33, year: 2019, label: "First US COVID case; started photography; Puerto Rico; works at Instagram" },
+  { age: 34, year: 2020, label: "Zion, Arches, Bryce" },
+  { age: 35, year: 2021, label: "Became a US citizen; Italy; Spain; Washington DC" },
+  { age: 36, year: 2022, label: "Kenya; Seattle; right elbow pain; Japan; ChatGPT launches; started reading philosophy books; Paris" },
+  { age: 37, year: 2023, label: "First cello lessons; New Orleans; London for Jay Chou; Antarctica; Iceland" },
+  { age: 38, year: 2024, label: "Dolomites; Taiwan; built this; first custom mechanical keyboard; started BJJ training" },
+  { age: 39, year: 2025, label: "Started at OpenAI; Peru; moving to San Francisco; started piano" },
+  { age: 40, year: 2026, label: "40 in 2026" }
+];
 
 navigate(currentRoute());

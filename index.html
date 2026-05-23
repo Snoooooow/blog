@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="system">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jingyu | 光明螺旋</title>
     <meta
       name="description"
-      content="Jingyu's personal website, featuring 光明螺旋, writing, links, books, projects, photos, keyboards, life notes, and now updates."
+      content="Jingyu's personal website, featuring 光明螺旋, writing, links, books, projects, life notes, weeks, and now updates."
     />
     <meta
       name="keywords"
-      content="Jingyu,光明螺旋,Snoooooow,personal website,software,projects,writing,books,photos,keyboards"
+      content="Jingyu,光明螺旋,Snoooooow,personal website,software,projects,writing,books,weeks"
     />
     <meta name="author" content="Jingyu" />
     <meta property="og:title" content="Jingyu | 光明螺旋" />
     <meta
       property="og:description"
-      content="Writing, links, books, projects, photos, keyboards, life notes, and now updates from Jingyu."
+      content="Writing, links, books, projects, life notes, weeks, and now updates from Jingyu."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://snoooooow.github.io/blog/" />
@@ -25,13 +25,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" type="application/rss+xml" title="光明螺旋 - All Posts" href="./feed.xml" />
     <link rel="stylesheet" href="./styles.css" />
-    <script>
-      (function () {
-        var saved = localStorage.getItem("jy-theme") || "system";
-        var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = saved === "system" ? (dark ? "dark" : "light") : saved;
-      })();
-    </script>
   </head>
   <body>
     <nav class="topbar">
@@ -48,21 +41,8 @@
           <a href="#links" data-route="links">Links</a>
           <a href="#books" data-route="books">Books</a>
           <a href="#projects" data-route="projects">Projects</a>
-          <a href="#photos" data-route="photos">Photos</a>
-          <div class="menu">
-            <button type="button" aria-haspopup="menu">
-              Keyboard
-              <span aria-hidden="true">v</span>
-            </button>
-            <div class="menu-panel" role="menu">
-              <a href="#keyboards" data-route="keyboards" role="menuitem">Gallery</a>
-              <a href="#keycaps" data-route="keycaps" role="menuitem">Keycaps</a>
-              <a href="#alexotos" data-route="alexotos" role="menuitem">alexotos</a>
-            </div>
-          </div>
           <a href="#weeks" data-route="weeks">Weeks</a>
           <a href="#now" data-route="now">Now</a>
-          <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">T</button>
         </div>
 
         <div class="mobile-actions">
@@ -75,13 +55,8 @@
         <a href="#links" data-route="links">Links</a>
         <a href="#books" data-route="books">Books</a>
         <a href="#projects" data-route="projects">Projects</a>
-        <a href="#photos" data-route="photos">Photos</a>
-        <a href="#keyboards" data-route="keyboards">Keyboard Gallery</a>
-        <a href="#keycaps" data-route="keycaps">Keycaps</a>
-        <a href="#alexotos" data-route="alexotos">alexotos</a>
         <a href="#weeks" data-route="weeks">Weeks</a>
         <a href="#now" data-route="now">Now</a>
-        <button type="button" data-theme-toggle>Toggle theme</button>
       </div>
     </nav>
 
