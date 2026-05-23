@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>光明螺旋</title>
+    <link>https://snoooooow.github.io/blog/</link>
+    <description>Updates from Jingyu.</description>
+    <item>
+      <title>第一篇</title>
+      <link>https://snoooooow.github.io/blog/#blog</link>
+      <description>这个中二的小站名字是我梦中出现的名字。</description>
+    </item>
+    <item>
+      <title>有时候人会忘记把自己当做是个人看</title>
+      <link>https://snoooooow.github.io/blog/#blog</link>
+      <description>重读《思维的乐趣》杂文集。</description>
+    </item>
+  </channel>
+</rss>
