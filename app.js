@@ -83,11 +83,40 @@ const pages = {
     ["Engineering", "References and articles worth returning to."],
     ["Tools", "Small utilities, libraries, and workflows that proved useful."]
   ]),
-  books: page("Books", "Reading notes and book summaries.", [
-    ["《思维的乐趣》", "重读王小波杂文集后的笔记已经从旧 GitHub Pages 博客合并到这里。"],
-    ["Recently read", "A running list of useful books and the ideas that stuck."],
-    ["Want to read", "A queue for research, software, biography, and systems thinking."]
-  ]),
+  books: {
+    title: "Books",
+    text: "Books 1 book summaries notes to read reading read 智能简史 麦克斯·班尼特 Max Bennett A Brief History of Intelligence",
+    render: () => `
+      <section class="page books-page">
+        <h1>Books</h1>
+        <p>1 book. Summaries and notes for some.</p>
+        <div class="book-tabs" role="tablist" aria-label="Book shelves">
+          <button class="is-active" type="button">To Read (1)</button>
+          <button type="button">Reading (0)</button>
+          <button type="button">Read (0)</button>
+          <button type="button">Didn't Finish (0)</button>
+          <button type="button">All (1)</button>
+        </div>
+        <div class="book-toolbar" aria-label="Book filters">
+          <span>Filter</span>
+          <button type="button">Date Read</button>
+          <button type="button">Date Added</button>
+          <button type="button">Title</button>
+          <button type="button">Author</button>
+          <button type="button">Rating</button>
+        </div>
+        <div class="book-count">1</div>
+        <div class="book-list">
+          <a class="book-row" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">
+            <span class="book-title">智能简史</span>
+            <span class="book-author">[美] 麦克斯·班尼特</span>
+            <span class="book-meta">进化、AI与人脑的突破 · 中译出版社 · 2025-2</span>
+            <span class="book-rating">9.0</span>
+          </a>
+        </div>
+      </section>
+    `
+  },
   projects: page("Projects", "Projects and prototypes.", [
     ["Personal website", "A compact static site with search, navigation, and responsive pages."],
     ["Workbench", "A collection of experiments that are too small for standalone repositories."]
