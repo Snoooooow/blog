@@ -107,19 +107,28 @@ const pages = {
         </div>
         <div class="book-count">1</div>
         <div class="book-list">
-          <a class="book-row" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">
-            <span class="book-main">
+          <a class="book-card" href="#book-intelligence" data-route="book-intelligence">
+            <span class="book-cover">
+              <img src="./assets/books/brief-history-of-intelligence.jpg" alt="《智能简史》封面" loading="lazy" />
+            </span>
+            <span class="book-info">
               <span class="book-title">智能简史</span>
               <span class="book-subtitle">进化、AI与人脑的突破</span>
+              <span class="book-author">[美] 麦克斯·班尼特</span>
+              <span class="book-meta">中译出版社 · 2025-2 · 想读</span>
+              <span class="book-rating">豆瓣 9.0</span>
             </span>
-            <span class="book-author">[美] 麦克斯·班尼特</span>
-            <span class="book-meta">中译出版社 · 2025-2</span>
-            <span class="book-rating">9.0</span>
           </a>
         </div>
       </section>
     `
   },
+  "book-intelligence": post("智能简史", "读书笔记", `
+    <p>《智能简史》把神经科学、进化史和人工智能放在同一个框架里讨论：人脑并不是一次性设计出来的完美机器，而是在漫长演化中通过多次关键突破逐步形成的系统。</p>
+    <p>这本书值得关注的核心问题是：为什么现代 AI 已经能在许多符号任务、文本任务和博弈任务上表现惊人，却仍然难以复现人类大脑在常识、身体协调、灵活规划和开放环境学习中的能力。</p>
+    <p>待补充正式读书笔记。</p>
+    <p><a class="inline-link" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">豆瓣条目</a></p>
+  `),
   projects: page("Projects", "Projects and prototypes.", [
     ["Personal website", "A compact static site with search, navigation, and responsive pages."],
     ["Workbench", "A collection of experiments that are too small for standalone repositories."]
