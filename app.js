@@ -89,28 +89,31 @@ const pages = {
     render: () => `
       <section class="page books-page">
         <h1>Books</h1>
-        <p>1 book. Summaries and notes for some.</p>
-        <div class="book-tabs" role="tablist" aria-label="Book shelves">
-          <button class="is-active" type="button">To Read (1)</button>
-          <button type="button">Reading (0)</button>
-          <button type="button">Read (0)</button>
-          <button type="button">Didn't Finish (0)</button>
-          <button type="button">All (1)</button>
+        <p class="book-summary">1 book. Summaries and notes for some.</p>
+        <div class="book-tabs" aria-label="Book shelves">
+          <span class="is-active">Want to Read</span>
+          <span>Reading</span>
+          <span>Read</span>
+          <span>Did Not Finish</span>
+          <span>All</span>
         </div>
         <div class="book-toolbar" aria-label="Book filters">
           <span>Filter</span>
-          <button type="button">Date Read</button>
-          <button type="button">Date Added</button>
-          <button type="button">Title</button>
-          <button type="button">Author</button>
-          <button type="button">Rating</button>
+          <span>Date Read</span>
+          <span>Date Added</span>
+          <span>Title</span>
+          <span>Author</span>
+          <span>Rating</span>
         </div>
         <div class="book-count">1</div>
         <div class="book-list">
           <a class="book-row" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">
-            <span class="book-title">智能简史</span>
+            <span class="book-main">
+              <span class="book-title">智能简史</span>
+              <span class="book-subtitle">进化、AI与人脑的突破</span>
+            </span>
             <span class="book-author">[美] 麦克斯·班尼特</span>
-            <span class="book-meta">进化、AI与人脑的突破 · 中译出版社 · 2025-2</span>
+            <span class="book-meta">中译出版社 · 2025-2</span>
             <span class="book-rating">9.0</span>
           </a>
         </div>

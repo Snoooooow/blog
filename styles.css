@@ -292,66 +292,87 @@ input {
 }
 
 .books-page {
-  max-width: 980px;
+  width: min(980px, 100%);
+  max-width: none;
+}
+
+.book-summary {
+  margin-bottom: 16px;
 }
 
 .book-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 20px 0 14px;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+  margin: 18px 0 12px;
 }
 
-.book-tabs button,
-.book-toolbar button {
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--panel);
+.book-tabs span {
+  position: relative;
   color: var(--muted);
-  padding: 6px 9px;
-  cursor: pointer;
+  padding: 8px 12px 10px 0;
+  margin-right: 14px;
+  white-space: nowrap;
+  font-size: 0.94rem;
 }
 
-.book-tabs button.is-active {
+.book-tabs span.is-active {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+.book-tabs span.is-active::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
   background: var(--fg);
-  border-color: var(--fg);
-  color: var(--bg);
 }
 
 .book-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 10px 0;
+  gap: 10px;
+  padding: 4px 0 10px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.book-toolbar span:not(:first-child) {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 4px 7px;
+  background: var(--panel);
+}
+
+.book-count {
+  margin: 12px 0 6px;
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-.book-count {
-  margin: 18px 0 8px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.book-list {
-  display: grid;
-  gap: 0;
-}
-
 .book-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1.4fr) minmax(130px, 0.8fr) minmax(180px, 1.3fr) 48px;
-  gap: 12px;
-  align-items: baseline;
+  grid-template-columns: minmax(180px, 1.35fr) minmax(130px, 0.75fr) minmax(150px, 0.9fr) 44px;
+  gap: 16px;
+  align-items: start;
   border-top: 1px solid var(--line);
-  padding: 12px 0;
+  padding: 13px 0;
+  min-width: 0;
 }
 
 .book-row:last-child {
   border-bottom: 1px solid var(--line);
+}
+
+.book-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
 }
 
 .book-title {
@@ -359,9 +380,15 @@ input {
   font-weight: 650;
 }
 
+.book-subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .book-author,
 .book-meta {
   color: var(--muted);
+  min-width: 0;
 }
 
 .book-rating {
@@ -520,7 +547,7 @@ input {
 
   .book-row {
     grid-template-columns: 1fr;
-    gap: 2px;
+    gap: 4px;
   }
 
   .book-rating {
