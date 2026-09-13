@@ -22,11 +22,36 @@ const legacyPosts = [
   }
 ];
 
-const allImportedPosts = [...importedPosts, ...mediumPosts];
+function normalizeArticleTitle(title) {
+  return title
+    .normalize("NFKC")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/[‐‑‒–—―﹘﹣－-]/g, "-")
+    .replace(/\s*-\s*/g, "-")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLocaleLowerCase();
+}
+
+function dedupeByOldestPublication(posts) {
+  const oldestByTitle = new Map();
+
+  for (const article of posts) {
+    const key = normalizeArticleTitle(article.title);
+    const existing = oldestByTitle.get(key);
+    if (!existing || article.publishedAt.localeCompare(existing.publishedAt) < 0) {
+      oldestByTitle.set(key, article);
+    }
+  }
+
+  return [...oldestByTitle.values()];
+}
+
+const allImportedPosts = dedupeByOldestPublication([...importedPosts, ...mediumPosts]);
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-const articleIndex = [...allImportedPosts, ...legacyPosts].sort((a, b) =>
+const articleIndex = dedupeByOldestPublication([...allImportedPosts, ...legacyPosts]).sort((a, b) =>
   b.publishedAt.localeCompare(a.publishedAt)
 );
 
@@ -45,7 +70,7 @@ const pages = {
         <section class="recent-writing" aria-labelledby="recent-title">
           <div class="section-heading">
             <h2 id="recent-title">最近写作</h2>
-            <a href="#blog" data-route="blog">全部 ${articleIndex.length} 篇 →</a>
+            <a class="archive-arrow" href="#blog" data-route="blog" aria-label="查看全部 ${articleIndex.length} 篇文章">→</a>
           </div>
           ${renderPostList(articleIndex.slice(0, 6), false)}
         </section>
