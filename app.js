@@ -1,49 +1,66 @@
+const legacyPosts = [
+  {
+    id: "post-january",
+    title: "一月",
+    publishedAt: "2023-01-28T23:15:19",
+    source: "光明螺旋",
+    summary: "关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。"
+  },
+  {
+    id: "post-wang-xiaobo",
+    title: "有时候人会忘记把自己当做是个人看",
+    publishedAt: "2020-02-02T18:34:19",
+    source: "光明螺旋",
+    summary: "重读《思维的乐趣》：关于王小波、思维、自由、传统和真实表达。"
+  },
+  {
+    id: "post-first",
+    title: "第一篇",
+    publishedAt: "2020-01-26T17:17:19",
+    source: "光明螺旋",
+    summary: "这个中二的小站名字是我梦中出现的名字。以后在这里集中写一些东西。"
+  }
+];
+
+const allImportedPosts = [...importedPosts, ...mediumPosts];
+
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+const articleIndex = [...allImportedPosts, ...legacyPosts].sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt)
+);
+
 const pages = {
   home: {
     title: "Home",
     text: "Jingyu 光明螺旋 Snoooooow personal website homepage software projects writing books now.",
     render: () => `
       <section class="home">
-        <div class="portrait" role="img" aria-label="Jingyu profile placeholder"></div>
-        <div class="intro">
-          <h1>Hi, I'm Jingyu.</h1>
-          <p class="tagline">This is 光明螺旋, a small home for writing, projects, and notes.</p>
-          <div class="rule"></div>
-          <div class="bio">
-            <p>I use this site as a home base for notes, projects, reading, and experiments that do not fit neatly anywhere else.</p>
-            <p>The original blog content from GitHub Pages is merged here, including the first post, the Wang Xiaobo reading note, and the January note.</p>
-            <p>I care about useful software, clear thinking, durable systems, and the craft behind turning ideas into working things.</p>
-            <p>Outside work I <a class="inline-link" href="#books" data-route="books">read</a> and keep a small record of what I am learning.</p>
+        <header class="home-intro">
+          <p class="eyebrow">JINGYU'S NOTEBOOK</p>
+          <h1>光明螺旋</h1>
+          <p class="tagline">写作、技术、阅读，以及一些值得留下来的念头。</p>
+          <p class="bio">这里收集我对产品、ranking、工作与生活的观察。文章按原始发布时间归档，不追逐频率，只记录真正想清楚的东西。</p>
+        </header>
+        <section class="recent-writing" aria-labelledby="recent-title">
+          <div class="section-heading">
+            <h2 id="recent-title">最近写作</h2>
+            <a href="#blog" data-route="blog">全部 ${articleIndex.length} 篇 →</a>
           </div>
-        </div>
+          ${renderPostList(articleIndex.slice(0, 6), false)}
+        </section>
       </section>
     `
   },
   blog: {
     title: "Blog",
-    text: "第一篇 有时候人会忘记把自己当做是个人看 思维的乐趣 王小波 一月 光明螺旋 writing essays notes.",
+    text: articleIndex.map((article) => `${article.title} ${article.summary}`).join(" "),
     render: () => `
-      <section class="page">
-        <h1>Blog</h1>
-        <p>Short essays, technical notes, and field reports.</p>
-        <div class="item-list">
-          <a class="item item-link" href="#post-first" data-route="post-first">
-            <h2>第一篇</h2>
-            <p>这个中二的小站名字是我梦中出现的名字。以后会在这个地方作为集中写一些东西，创作一些内容的仓库。</p>
-          </a>
-          <a class="item item-link" href="#post-wang-xiaobo" data-route="post-wang-xiaobo">
-            <h2>有时候人会忘记把自己当做是个人看</h2>
-            <p>重读《思维的乐趣》杂文集的长读书笔记，关于王小波、思维、自由、传统和真实表达。</p>
-          </a>
-          <a class="item item-link" href="#post-january" data-route="post-january">
-            <h2>一月</h2>
-            <p>关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。</p>
-          </a>
-          <article class="item">
-            <h2>Designing small systems well</h2>
-            <p>Notes on keeping personal projects understandable after the first burst of energy.</p>
-          </article>
-        </div>
+      <section class="page archive-page">
+        <p class="eyebrow">ARCHIVE</p>
+        <h1>写作</h1>
+        <p class="page-lede">${articleIndex.length} 篇文章，按最初发表时间排列。</p>
+        ${renderPostList(articleIndex, true)}
       </section>
     `
   },
@@ -147,6 +164,37 @@ const pages = {
   ])
 };
 
+for (const article of allImportedPosts) {
+  const sources = [{ label: article.source, url: article.sourceUrl }];
+  if (mediumCrossposts[article.id]) sources.push(mediumCrossposts[article.id]);
+  pages[article.id] = post(article.title, article.publishedAt, article.content, {
+    source: article.source,
+    sources
+  });
+}
+
+function formatDate(value) {
+  const [year, month, day] = value.slice(0, 10).split("-");
+  return `${year}.${month}.${day}`;
+}
+
+function renderPostList(posts, showSummary) {
+  return `
+    <div class="post-list">
+      ${posts.map((article) => `
+        <a class="post-row" href="#${article.id}" data-route="${article.id}">
+          <time datetime="${article.publishedAt}">${formatDate(article.publishedAt)}</time>
+          <span class="post-row-copy">
+            <strong>${article.title}</strong>
+            ${showSummary ? `<span>${article.summary}</span>` : ""}
+          </span>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
+
 function page(title, description, items) {
   return {
     title,
@@ -163,15 +211,22 @@ function page(title, description, items) {
   };
 }
 
-function post(title, date, body) {
+function post(title, date, body, metadata = {}) {
+  const plainText = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const minutes = Math.max(1, Math.ceil(plainText.length / 450));
   return {
     title,
     text: `${title} ${date} ${body.replace(/<[^>]+>/g, " ")}`,
     render: () => `
       <article class="page post">
-        <a class="back-link" href="#blog" data-route="blog">Back to Blog</a>
+        <a class="back-link" href="#blog" data-route="blog">← 返回写作</a>
+        <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "光明螺旋")}</div>
         <h1>${title}</h1>
-        <p>${date}</p>
+        <div class="post-meta">
+          <time datetime="${date}">${formatDate(date)}</time>
+          <span>${minutes} 分钟阅读</span>
+          ${metadata.sources ? metadata.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${source.label} 原文 ↗</a>`).join("") : ""}
+        </div>
         <div class="post-body">${body}</div>
       </article>
     `
@@ -187,9 +242,11 @@ const searchResults = document.querySelector("[data-search-results]");
 function navigate(route) {
   const key = pages[route] ? route : "home";
   app.innerHTML = pages[key].render();
-  document.title = key === "home" ? "Jingyu | 光明螺旋" : `${pages[key].title} | 光明螺旋`;
+  document.title = key === "home" ? "光明螺旋 — Jingyu" : `${pages[key].title} | 光明螺旋`;
   mobileNav.classList.remove("is-open");
   app.focus({ preventScroll: true });
+  window.scrollTo({ top: 0, left: 0 });
+  requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
 }
 
 function currentRoute() {

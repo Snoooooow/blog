@@ -3,21 +3,118 @@
   <channel>
     <title>光明螺旋</title>
     <link>https://snoooooow.github.io/blog/</link>
-    <description>Updates from Jingyu.</description>
+    <description>Jingyu 的写作、技术、阅读与生活笔记。</description>
     <item>
-      <title>第一篇</title>
-      <link>https://snoooooow.github.io/blog/#post-first</link>
-      <description>这个中二的小站名字是我梦中出现的名字。</description>
+      <title>Writing is still the key</title>
+      <link>https://snoooooow.github.io/blog/#medium-1187ed60b1a1</link>
+      <guid>https://snoooooow.github.io/blog/#medium-1187ed60b1a1</guid>
+      <pubDate>Sat, 23 Nov 2024 18:30:39 +0000</pubDate>
+      <description>Recently, I revisited Paul Graham’s essay, Write and Write Not : https://paulgraham.com/writes.html “If you’re thinking without writing, you only think you’re thinking.” Writing re</description>
     </item>
     <item>
-      <title>有时候人会忘记把自己当做是个人看</title>
-      <link>https://snoooooow.github.io/blog/#post-wang-xiaobo</link>
-      <description>重读《思维的乐趣》杂文集。</description>
+      <title>语言有力量 说出你的项目难度</title>
+      <link>https://snoooooow.github.io/blog/#wp-85</link>
+      <guid>https://snoooooow.github.io/blog/#wp-85</guid>
+      <pubDate>Fri, 22 Nov 2024 22:01:52 +0000</pubDate>
+      <description>很多人在公司里， 尤其是在北美职场， 因为囿于中国的谦虚美德，可能会比较羞于夸耀做的项目结果， 甚至说项目难度时候也就用一句“还行 还行， 不难， 不难” 说过去， 内心希冀别人知道项目背景和细节， 然后结合自己觉得不难， 让别人impressive 到自己的能力 🙂 我经常这样。 最近有件事情让我转换了视角。 刚搬了家，作为花园维护懒人，请来墨西哥园丁把花园合并铲除。 虽然英语一般但是小伙子看起来很聪明踏实。 因为我们做的项目是也不是小工程， 讲价的时候就准备各种项目打包砍价。 这时候园丁半用着肢体语言， 半用着英语来开始说他要做的步骤： “要把这么大的树桩锯掉”， 双手在空中比划。 “然后把根也从地上砍掉” 稍跑靠后做单刀状。 “然后把全部的树枝和垃圾都清理” “这么一大片” 右手向不大的前院摆出一个弧线。 虽然不是很大的信息差， 知道有些细节是套路，但语言很神奇， 在潜意识中吸收了其更多的工作的细节和过程。我不得不说收到了这些信号，讲价的时候心理上或多或少还是会酌情考虑。 不由得想在更多维度的生活中， 包括工作，交易， 当我们作为售卖服务或者时间的“乙方” 时候， 在谈论自己的工作，提供的服务， 在适当的机会来更多的描述难度主体， 其实是提供给对方更多的context 一个途径, 反而是一个实事求是的过程， 得到更多重视和应有的apprication. 并且更好的在未来的合作和交易中，增加更多的trust 和理解。 语言有力量， 说出你的项目难度， 给出更多需要的细节。</description>
+    </item>
+    <item>
+      <title>Product 到 Ranking (2)</title>
+      <link>https://snoooooow.github.io/blog/#wp-78</link>
+      <guid>https://snoooooow.github.io/blog/#wp-78</guid>
+      <pubDate>Fri, 22 Nov 2024 21:51:56 +0000</pubDate>
+      <description>这个half 关于的是optimize. ranking is your tool. （1）系统分析。 funnel + product 来分析opportunity. 这个是值得花时间搞清楚的(2) 每一块再进行细分（3）找到方向， 从理论/产品上也能确认是好的方案。 不是只为了metrics （4）设计实验， 进行quick head room test confirm 方向（5）调整 (6) 上线 2 . 时间分配 ranking 有很多time conumption 的 model / jobs/ 要run. 要更快的， 更效率的switch, 才能更好的orchestra 自己的时间</description>
+    </item>
+    <item>
+      <title>10X is Easier than 2X – 8 分</title>
+      <link>https://snoooooow.github.io/blog/#wp-83</link>
+      <guid>https://snoooooow.github.io/blog/#wp-83</guid>
+      <pubDate>Mon, 18 Nov 2024 19:01:03 +0000</pubDate>
+      <description>一个很唬人的书名， 但是还是敌不住这吸引人的标题和各种大道小道博主的推荐分享。看完以后还是很有收获的， 尤其是对于纠结过事业， 爱好中的宽度和广度的人。 总体 8 分， 前面精彩， 后面略单薄。 Introduction 里面其实有一个很有意思的话题 “As core aspect of psychological flexibility is viewing yourself as a context, rather than viewing yourself as content. This enables you to not overly identify with you thoughts and emotions, since you’re not your thoughts and emotions. Instead of your thoughts and emotions and […]</description>
+    </item>
+    <item>
+      <title>游戏上的抹茶拿铁  —- Palworld 幻兽帕鲁 启示</title>
+      <link>https://snoooooow.github.io/blog/#wp-75</link>
+      <guid>https://snoooooow.github.io/blog/#wp-75</guid>
+      <pubDate>Mon, 29 Jan 2024 07:14:49 +0000</pubDate>
+      <description>生存类游戏并不是我的菜， 何况是看到类宠物小精灵的“缝合怪”， 并没有带着很高的期待来看。 不过我却收获到了宝贵的一课： 1.这游戏在我的既有世界观中是不会 approve 或者立项的项目： 除了故事性， 其他的游戏属性基本都有了： 生存， 经营， 建造， 开放世界，射击， 雇佣， 属性相克， 多方神兽boss. 在硅谷从乔布斯开始的产品极简克制，追求少就是多，给很多人套上了紧箍咒。 但结果幻兽帕鲁却是缝合的很好， 像一杯抹茶拿铁: 如果相信玩家喜欢的核心玩法不变， 只看裁缝的功力照样能出好的饮料！ 3.对于 Pokémon / 权威的 祛魅惑。 因为小时候pokemon 这个IP 过于闪耀， 我们形成了固有印象: 他们是友爱的， 有个性的， 弘扬的是少年冒险， 真善美的。 这个游戏高速我们： 我们和宠物小精灵之间的关系是可以破裂的， 可以利用的， 可以阴暗自私的。 所以之前这么多人放着这么一个大IP/ 大机会缺迟迟不能动， 不敢动。 被很久之前的崇拜困的死死的。 3. 大公司的大IP 是药也是毒， 它会让一个公司怠惰和固步自封到难以想象的地步。 家里有一台印钞机， 就不会有人花时间踏上冒险的旅程寻找金矿。 比如这次的Game Freak. 所以我们只能让自己更加open, 不能直接用惯用的观点否定一个idea。 作为创业者也可以增强信心， 看到大公司的怠惰从而更加找到机会， 有时候大力出奇迹。 […]</description>
+    </item>
+    <item>
+      <title>《独裁者手册》后</title>
+      <link>https://snoooooow.github.io/blog/#wp-50</link>
+      <guid>https://snoooooow.github.io/blog/#wp-50</guid>
+      <pubDate>Mon, 18 Sep 2023 00:15:45 +0000</pubDate>
+      <description>对有启发的书放个书摘，总结是个习惯但是最近还没有被trigger， 直到最近这本《独裁者手册》。 之前一直把社科，政治经济相关书籍用Xmind 来整理， 这次受到writing summary 的template 启发，来试试这个方式。</description>
+    </item>
+    <item>
+      <title>克隆人</title>
+      <link>https://snoooooow.github.io/blog/#wp-39</link>
+      <guid>https://snoooooow.github.io/blog/#wp-39</guid>
+      <pubDate>Sun, 27 Aug 2023 05:44:45 +0000</pubDate>
+      <description>在儿童游乐公园里，我慢慢伸直手臂，举起枪口。对面这个人头发凌乱，白皙的皮肤上被麻绳扎出血痕， 颓坐在地上，眼镜滑到鼻尖。真想过去帮她向上推一下。 天气冰冷，太阳像个小小的干橙子挂在天上，光线朦胧。这样不痛不痒天气从我出生到现在从未变过。自从基因探测器在北美发现了我的DNA母本信号以后，其实并没有想象中惊讶， 更或者说早有心理准备。随着百年来环境的恶化，人口大幅减少，经济萧条， 克隆已经在国家之间秘密展开。 根据现在知道的情报，合约国家每年会把一小部分优良基因克隆，然后改变其身体和容貌，运送到指定的互惠目的地。 经过几年精心的合作，人口和经济情况也刚刚算是稳定。 我手上的枪的是两年前加入的“反克隆” 组织发的。组织的活动也从刚开始毫无方寸的抗议，慢慢到具有了小成气候的武装。这公园里有一群人和我举着一样的枪，同时对着自己的0号(我们称克隆的母本叫做 0 号)。 等着一声令下， 就准备结束对方的生命。 我静静地打量着对面这个和我长得完全不一样的人，她身体修长，黑发如瀑，那对双眼皮和大眼睛我一直想拥有的。虽然这双眼睛里面现在满是绝望。忽然间，我看到了她的项链。 “你什么时候买的这条鱼骨项链？” 我问。 “27岁那年 丈夫送我的” 她没抬起头, 幽幽地开口道。 想必这几天的抓捕和讯问已经让她精疲力竭，不愿意再多说一个字。 “我的是 22岁时候 男朋友送我的”， 我摸着自己的鱼骨项链。 她猛然间抬起头看我，神情从绝望到错愕，她慢慢地移动嘴唇，想对我说些什么，不过声音小到无法听清。她不停小声嘟囔着，慢慢地绽放出笑容，又突然间变成大笑，无法停止。我眉头皱起，这笑容让我生气。这时候执行的命令响起，我自然地扣动了板机，血从她的前额溅出，很快她的身体也随着倒了下去，她仍然看着我，不肯闭眼。 “第37次 0 号清除完毕！” 身边响起欢呼 。虽然一直不想承认，我还是对我的0号产生了极大的兴趣，她死前的画面在我心里挥之不去。我想知道她最后想到了什么，笑些什么，又想对我说些什么。 五年后， “反克隆” 组织已经找到并且几乎攻占了各个克隆研究点。我们每到一个研究点，就把大楼翻了个遍，迫不及待地想找到所有0号的资料，向世界展现这些罪恶。 但是这几年间，我们还是没能找到任何关于哪怕一个0号的资料。 所有的 0 号仿佛如同天降。 在最后一个研究点，我们努力找了一天一夜，还是一无所获。 大家都在相互鼓励， 并信誓旦旦要继续寻找。外面出现了久违的月光，我站在窗边，对着这远方圆圆如盘的星球大笑了起来。然后微微颤抖着双手，低头抱住了自己的头，眼镜滑落。</description>
+    </item>
+    <item>
+      <title>琥珀</title>
+      <link>https://snoooooow.github.io/blog/#wp-36</link>
+      <guid>https://snoooooow.github.io/blog/#wp-36</guid>
+      <pubDate>Sun, 27 Aug 2023 05:43:30 +0000</pubDate>
+      <description>老小区的楼总在掉漆，尤其侧面，在不同的照射角度下，灰灰白白阴阴暗暗形状不同。老小区的路不算长，横竖错落排在楼中间。 路面有时不好走，石子凸起，中间圈起一潭小泥。拐角处时又突然平坦新糊了的白色水泥。 杨玉秀在机械厂干了一辈子，退休在家也有许久，带大的孙女已经上了小学，周末偶尔回来。 傍晚走出小区去菜市，热热闹闹地挑挑拣拣带回一个茄子，三五个番茄，成了生活中重要的一个活动。 玉秀尤其喜欢回来路上看小区广场上人们跳舞。在夕阳和远处店铺的灯光侧映照下，广场成了一个大大的户外舞厅，放着一首一首不知道名字的歌曲。虽能自己从不跳，但能够听着节奏看着别人跳也总是开心的。 看着看着，玉秀的眼神最终还是落在老乔身上。老乔是负责放音乐的，有时候跟着跳舞，有时候也就站在旁边看着。 玉秀经常在远处打量他。 老乔头发不多，鬓角略有灰白，身形瘦长，肩膀不宽，半挺着背靠在树上，像一个悠闲地的昆虫。玉秀向前两步，不过依然距离老乔很远。今天老乔还是穿的那双灰色运动鞋，黄黑色的夹克，旁边放着盛着茶叶的透明玻璃杯。从没见过老乔吸烟，挺好。 从没见过老乔吐痰，不错。夕阳照在老乔的脸上，玉秀又靠近了些，把老乔的侧面也仔仔细细端详了起来。老乔的脸，长而立体，并不黝黑。眼睛大大的，眉毛黑浓，好看。 练舞的人向老乔打了个手势，老乔便低头按键换歌， 抬头时还是看着原来的方向，不曾扫向玉秀。玉秀感到庆幸的同时也有些失落。 “漫漫长夜 一路芬芳 岁月曾流过“ 广场上新歌开始了，这首歌玉秀竟是知道的。歌声在空中波开，远处传来花椒爆香的味道，夕阳停止下坠。歌声中老乔在玉秀心里远远地凝成了一枚端正的琥珀。不知过了多久，玉芬自觉有些失态， 赶紧把眼光收了起来。这首歌孩子在多年前也在家经常放，还跟着大声嚷嚷唱，没想到现在听起来那么好听。 歌曲动感，一曲结束，大家拍手后散开休息，喝水的喝水，擦汗的擦汗。老乔的树旁人也多了起来。 “今天刚出去一趟，有点儿累了，你们跳。老严你们那边儿。。。” 老乔说。 ”就是就是， 不靠谱。“ 老乔说。 ”你看看， 你看看。我就说。“ 老乔说。 老乔嘴巴忽闪忽合，眉飞色舞，声音洪亮，从人群中穿透出来，传到玉秀耳朵里。玉秀有些惊讶这声音，和想象中的温雅不一样，它张扬自恃，里面还参杂着鼻息制造的假笑，这让她想起机械厂里大喇叭的声音，只觉得聒噪烦闷。玉秀心里腾起一阵失望，倏地皱起的眉头，紧得仿佛要把远处的琥珀敲碎。玉秀的肩膀突然也感觉酸了起来，手心被勒得生疼，才发觉菜在手里拎了有一大会儿了。 天色不知不觉暗下来了，该回家了。下一首音乐前奏开始了，又是一首玉秀没听过的歌曲。 不好听。路灯闪烁两下，亮了起来，打在玉秀周围。玉秀不喜欢这闪现的光晕，总是会让她想起耳顺之年桌面前旋转得蛋糕寿桃，中间鼓出来烛光。玉秀立刻转头朝家走去，路上遇到机械厂旧相识这次也只匆忙点了个头，没有停下来，逃也似地离开了广场，走上了小区坑坑洼洼的路。</description>
+    </item>
+    <item>
+      <title>阎王殿打工记</title>
+      <link>https://snoooooow.github.io/blog/#wp-25</link>
+      <guid>https://snoooooow.github.io/blog/#wp-25</guid>
+      <pubDate>Wed, 16 Aug 2023 04:13:48 +0000</pubDate>
+      <description>“缺铁，缺血，缺铁性贫血。” 我扫了一眼对面桌子正中的舌头，头也没抬，轻描淡写地说。阎王殿里这种简历我是见多了，新手还不知道怎么判也是正常。月光洒在大殿的走廊里， 也照在大家的办工桌上。我来这里打工也有些年头了，久到已经忘记什么时候开始了，仿佛我就出生在这办公桌上。 阎王殿里其实忙碌又平实，没有刀山火海，更没有小鬼拉大锯，有的是一张张办工桌横横竖竖无限排列，四面是无尽的高墙。判官们伏案认真，啧啧切切，起起伏伏。 小鬼交们头接耳，八卦史今。 夜叉鬼卒各司其职，牛头马面经常出差。我们判的是进入下一轮回之前的静默期。静默就是不生不死、不闻不见，是精神不灭的虚空。 通俗点说，就是强制悬空发呆。静默的期限也是有章可循，无论您上轮是皇亲贵胄还是平头老百姓，我们只看简历，也就是舌头。别看这舌头虽小，但蕴含的信息可太多了。看我旁边的这一叠里，红舌苔平正，枉死城准备。橙舌苔腻，必是罪大恶极，贪赃枉法，再给他加三百大年！青色苔厚，疾病侵肌死，啧啧，惨嘞。白色苔黑，这必是冤死啊。虽然官职一直不大，但是看舌头判前世我可是有一套自己的体系原则，算是阎王殿闻名，也吸引了一批后辈前来拜师。 就算自己升不到僚佐，能把他们带上判官这条道也是欣慰了。 “打仗亡命。 判个十年意思一下就好。” 我看对面这个徒弟还在低头犯疑，便直接给甩他了答案。这个小徒弟叫前卿，不机灵，问题还很多，但总问不到点子上去，有时候烦得很，还好小嘴算甜，勉强可以教化。 “亡～于～兴～师～修～我～戈～矛” 今天早饭好吃，心情不错，我唱起了小曲。 “师傅师傅，您唱的是啥？” “《诗经》” “师傅师傅， 这就是《诗经》啊，您会《诗经》啊！ 不过这个舌头上。。” “废话！” 我打断前卿。 “你一件事一件事说。这书最近不见人烧过来了，之前见得多了。回头我看见给你拿两本来。” “谢谢师傅！我感觉这根舌头个头不大，我细闻还有幽香传来，感觉是根。。雌舌” “雌舌必是尖头，根部平圆，握而有弹性。你说说这根哪点儿符合。” 我耐心的解释。 “明白了师傅。” 前卿的判笔落下，他前方的舌头便倏然从桌子翻到空中，贴挂到殿墙上，不一会儿它就将会飘出去和它的主人一起去开启静默期。 大殿上每时每刻，都有舌头不停的从四面八方的办公桌风一样的撞到墙上，又同时有很多舌头齐齐落下来，飘出殿外。判笔上上下下，大家都在忙碌的工作着。 今天的午饭是辣炒牛眼，焖鱼尾配五鼠汤。 又是老一套。 前卿吃得香，不一会儿肉菜全光，汤眼看也要见底。我把肉和汤分了些向他推过去。 “我应该已经老了，吃不下这么多。” “好嘞，谢谢师傅。” 我知道在这殿中无尽的冰冷时间里，这样的小小温暖就像风中的烛光一样可笑，但是有过总是好过完全没有。 午饭后，我正准备在徒弟们的喧哗声睡去，却突然感到周围安静了。奇怪。我缓缓抬头，原来是阎摩从远处走了过来，手上还拿着着一叠文件和一个塑封的舌头。 “是不是师傅你要高升僚佐了？嘿嘿。” “嘘！ 胡说什么呢。” 虽然是前卿一句无心的话，竟是勾起了我的一丝期待。不过看阎摩的脸色铁青，目不斜视，步伐焦急，感觉有事，还不是好事。 “这舌头。谁判的。 出来一下。” 阎摩刚大殿主坐上，便旋即转头，举起那个塑封的舌头，声音不大， 但是穿透整个大殿。各个桌上的舌头都一震。 我定睛一瞧， 这个不就是早上前卿桌上的那个缺铁性贫血吗？应该没问题啊。前卿向我投来疑惑的目光。 “谁判的！？” 看来确实不是好事，但是不知道有多严重。应该不会太严重，我心中嘀咕。这不正是让他好好经历一下机会嘛，对，这是个好机会。我也佯装疑惑地看向前卿，朝他努努嘴，捎带着鼓励的眼神，身体偏了偏，给他让出走道。他眸子里的疑惑瞬间变成了讶异，这有些刺痛了我。 前卿两腿打颤，踉跄地走到大殿中央，肩膀向内卷起来，头垂在胸前，整个人都矮了下去。 “雄雌都能判错! 今天我在阎蜜那简直无地自容! 你此刻开始静默，两千年以后执行形灭。” 我倏地瞪大眼睛， 整个人像被钉住，无法动弹，只觉得下体汩汩地流出了热热的液体。 就在同时，前卿的舌头飘到空中，“啪”地一声，贴在无限延伸向上的殿墙高处。他已经无法再说话，这让我竟然有一丝庆幸。 前卿直直地看向我，眼睛像是风中的烛光，转瞬即逝的明亮以后是又深又长的黑。 “下面宣布新僚佐名单。。。” […]</description>
+    </item>
+    <item>
+      <title>Product 到  Ranking</title>
+      <link>https://snoooooow.github.io/blog/#wp-15</link>
+      <guid>https://snoooooow.github.io/blog/#wp-15</guid>
+      <pubDate>Mon, 14 Aug 2023 03:47:14 +0000</pubDate>
+      <description>呆了两年的product 组， 最近换到ranking (recommendation) 组， 准备用这块儿地方当作在这过程中一些存档和总结， 回过头来看应该挺有意思的。 会不断更新的。 Ranking ： 最近体会 数据处理 Value Model 调优 Model Directions 迭代速度区别 Ranking 的迭代大概是product 10X 速度。 原因有： 也就是说</description>
     </item>
     <item>
       <title>一月</title>
       <link>https://snoooooow.github.io/blog/#post-january</link>
+      <guid>https://snoooooow.github.io/blog/#post-january</guid>
+      <pubDate>Sun, 29 Jan 2023 07:15:19 +0000</pubDate>
       <description>关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。</description>
+    </item>
+    <item>
+      <title>有时候人会忘记把自己当做是个人看</title>
+      <link>https://snoooooow.github.io/blog/#post-wang-xiaobo</link>
+      <guid>https://snoooooow.github.io/blog/#post-wang-xiaobo</guid>
+      <pubDate>Mon, 03 Feb 2020 02:34:19 +0000</pubDate>
+      <description>重读《思维的乐趣》杂文集。</description>
+    </item>
+    <item>
+      <title>第一篇</title>
+      <link>https://snoooooow.github.io/blog/#post-first</link>
+      <guid>https://snoooooow.github.io/blog/#post-first</guid>
+      <pubDate>Mon, 27 Jan 2020 01:17:19 +0000</pubDate>
+      <description>这个中二的小站名字是我梦中出现的名字。</description>
+    </item>
+    <item>
+      <title>DDIA 读书笔记 (2) — 第三章 数据的存储与获取</title>
+      <link>https://snoooooow.github.io/blog/#medium-a31d025bb2b</link>
+      <guid>https://snoooooow.github.io/blog/#medium-a31d025bb2b</guid>
+      <pubDate>Sun, 24 Mar 2019 05:53:57 +0000</pubDate>
+      <description>DDIA 读书笔记 (2) — 第三章 数据的存储与获取 第三章断断续续看的， 这周把它整理一下。 这章写的是关于数据的存储与获取， 介绍了一些数据库底层的数据结构支持和利弊， 非常精彩。 写的是我觉得对我来说的新东西, 明白一些数据库底层其实也没有辣么fancy 的实现，都是把普通的数据结构用到淋漓尽致。 第一部分： Index Index 是从原始数据衍</description>
+    </item>
+    <item>
+      <title>区块链 — 原子交换(Atomic Swap)</title>
+      <link>https://snoooooow.github.io/blog/#medium-c816723405ec</link>
+      <guid>https://snoooooow.github.io/blog/#medium-c816723405ec</guid>
+      <pubDate>Wed, 27 Feb 2019 01:19:15 +0000</pubDate>
+      <description>区块链 — 原子交换(Atomic Swap) 原子交换是区块链上的一种不用到第三方的去中心化的加密货币交换算法。它可以让远在异地的两个账户交换不同的货币，而不用担心对方捐款逃跑或者赖账。虽然不是完美解决方案， 但是底线是起码不会让交易的任何一方损失钱。各原种资料看了遍，终于自己能说通了。 下面就说说我对这个算法的理解。 总分总的思路 :) 交易双方为 A </description>
+    </item>
+    <item>
+      <title>Designing Data-Intensive Applications 读书笔记 (1) — Chapter 4</title>
+      <link>https://snoooooow.github.io/blog/#medium-43177d6feb22</link>
+      <guid>https://snoooooow.github.io/blog/#medium-43177d6feb22</guid>
+      <pubDate>Sun, 16 Sep 2018 22:25:48 +0000</pubDate>
+      <description>去年看过这本一遍，感觉很受教，但是自己没有能整理下来， 忘得光光。 这次准备写一下自己的看到的东西。并不妄想面面俱到，但是觉得比较有用的（更多是主观 有用）东西就记下来。 因为工作上的一些问题，先查一起了Chapter 4- Encoding and Evolution, 所以就从这开始。 尝试尽量用自己的话说，有些不好用中文就用英文了。 第四章写的是关于 </description>
     </item>
   </channel>
 </rss>
