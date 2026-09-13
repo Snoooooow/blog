@@ -55,6 +55,17 @@ const articleIndex = dedupeByOldestPublication([...allImportedPosts, ...legacyPo
   b.publishedAt.localeCompare(a.publishedAt)
 );
 
+let currentLanguage = new URLSearchParams(window.location.search).get("lang") === "en" ? "en" : "zh";
+
+function t(key) {
+  return siteTranslations[currentLanguage][key];
+}
+
+function localizedArticle(article) {
+  if (currentLanguage !== "en" || !englishArticles[article.id]) return article;
+  return { ...article, ...englishArticles[article.id] };
+}
+
 const pages = {
   home: {
     title: "Home",
@@ -62,17 +73,13 @@ const pages = {
     render: () => `
       <section class="home">
         <header class="home-intro">
-          <p class="eyebrow">JINGYU'S NOTEBOOK</p>
-          <h1>光明螺旋</h1>
-          <p class="tagline">写作、技术、阅读，以及一些值得留下来的念头。</p>
-          <p class="bio">这里收集我对产品、ranking、工作与生活的观察。文章按原始发布时间归档，不追逐频率，只记录真正想清楚的东西。</p>
+          <h1>${t("brand")}</h1>
         </header>
-        <section class="recent-writing" aria-labelledby="recent-title">
-          <div class="section-heading">
-            <h2 id="recent-title">最近写作</h2>
-            <a class="archive-arrow" href="#blog" data-route="blog" aria-label="查看全部 ${articleIndex.length} 篇文章">→</a>
+        <section class="home-writing" aria-label="${t("writing")}">
+          ${renderPostList(articleIndex.slice(0, 6))}
+          <div class="archive-pager-wrap">
+            <a class="archive-pager" href="#blog" data-route="blog" aria-label="${t("viewAll")}">»</a>
           </div>
-          ${renderPostList(articleIndex.slice(0, 6), false)}
         </section>
       </section>
     `
@@ -82,17 +89,15 @@ const pages = {
     text: articleIndex.map((article) => `${article.title} ${article.summary}`).join(" "),
     render: () => `
       <section class="page archive-page">
-        <p class="eyebrow">ARCHIVE</p>
-        <h1>写作</h1>
-        <p class="page-lede">${articleIndex.length} 篇文章，按最初发表时间排列。</p>
-        ${renderPostList(articleIndex, true)}
+        <h1>${t("writing")}</h1>
+        ${renderPostList(articleIndex)}
       </section>
     `
   },
   "post-first": post("第一篇", "2020-01-26", `
     <p>这个中二的小站名字是我梦中出现的名字。觉得很酷就用了。</p>
     <p>以后会在这个地方作为集中写一些东西，创作一些内容的仓库。把分散的想法和细枝末节都能铺陈开来。</p>
-  `),
+  `, {}, "post-first"),
   "post-wang-xiaobo": post("有时候人会忘记把自己当做是个人看 -- 重读《思维的乐趣》杂文集", "2020-02-02", `
     <p>“我插队的地方有军代表管着我们， 现在我认为， 他们是一批单纯的好人，但我还认为，在我这一生里， 再也没有谁比他们是我更加痛苦过了。” --- 《思维的乐趣》</p>
     <p>有时候人会忘记把自己当做是个人看，王小波总是好心提醒。他也当然不是书中那一头非常出名猪，但是他非常羡慕那头特立独行的猪。</p>
@@ -114,13 +119,13 @@ const pages = {
     <p>所以看书的时候感觉又好笑又害怕。 你看，他写“所谓文学，在我看来就是先把文章写好看了再说，别的就别管她妈的。”，这种话怎么能不让我在公交上笑起来，像极了当时在运动场上看不懂书的傻人。</p>
     <p>很喜欢王小波的这本的神神叨叨话册子，虽然书中排列词汇的艺术还有待商榷——例如把屎橛子，屙尿，动物们，和皇帝排站在两页之间，真怕他们会打起来，但在我看来它仿佛是一个小小的斗士赶在夜里在墙根角落糊的小字报们，发出最质朴的呐喊。</p>
     <p>而且这本书没有序言和简介，我喜欢这种直接和对读者的信任，虽然有的话我也不会看的。</p>
-  `),
+  `, {}, "post-wang-xiaobo"),
   "post-january": post("一月", "2023-01-28", `
     <ol>
       <li>对于 level / 管理者的祛魅</li>
       <li>行为产生目的， 目的又产生更多相关行为。 以至于前后无从分清。</li>
     </ol>
-  `),
+  `, {}, "post-january"),
   links: page("Links", "Curated links from around the web.", [
     ["Engineering", "References and articles worth returning to."],
     ["Tools", "Small utilities, libraries, and workflows that proved useful."]
@@ -130,22 +135,11 @@ const pages = {
     text: "Books 1 book summaries notes to read reading read 智能简史 麦克斯·班尼特 Max Bennett A Brief History of Intelligence",
     render: () => `
       <section class="page books-page">
-        <h1>Books</h1>
-        <p class="book-summary">1 book. Summaries and notes for some.</p>
+        <h1>${t("reading")}</h1>
         <div class="book-tabs" aria-label="Book shelves">
-          <span class="is-active">Want to Read</span>
-          <span>Reading</span>
-          <span>Read</span>
-          <span>Did Not Finish</span>
-          <span>All</span>
-        </div>
-        <div class="book-toolbar" aria-label="Book filters">
-          <span>Filter</span>
-          <span>Date Read</span>
-          <span>Date Added</span>
-          <span>Title</span>
-          <span>Author</span>
-          <span>Rating</span>
+          <span class="is-active">${t("wantToRead")}</span>
+          <span>${t("readingNow")}</span>
+          <span>${t("read")}</span>
         </div>
         <div class="book-count">1</div>
         <div class="book-list">
@@ -154,11 +148,9 @@ const pages = {
               <img src="./assets/books/brief-history-of-intelligence.jpg" alt="《智能简史》封面" loading="lazy" />
             </span>
             <span class="book-info">
-              <span class="book-title">智能简史</span>
-              <span class="book-subtitle">进化、AI与人脑的突破</span>
-              <span class="book-author">[美] 麦克斯·班尼特</span>
-              <span class="book-meta">中译出版社 · 2025-2 · 想读</span>
-              <span class="book-rating">豆瓣 9.0</span>
+              <span class="book-title">${currentLanguage === "en" ? "A Brief History of Intelligence" : "智能简史"}</span>
+              <span class="book-author">${currentLanguage === "en" ? "Max Bennett" : "[美] 麦克斯·班尼特"}</span>
+              <span class="book-meta">${currentLanguage === "en" ? "CITIC Press · 2025 · Want to read" : "中译出版社 · 2025 · 想读"}</span>
             </span>
           </a>
         </div>
@@ -170,15 +162,18 @@ const pages = {
     <p>这本书值得关注的核心问题是：为什么现代 AI 已经能在许多符号任务、文本任务和博弈任务上表现惊人，却仍然难以复现人类大脑在常识、身体协调、灵活规划和开放环境学习中的能力。</p>
     <p>待补充正式读书笔记。</p>
     <p><a class="inline-link" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">豆瓣条目</a></p>
-  `),
-  projects: page("Projects", "Projects and prototypes.", [
-    ["Personal website", "A compact static site with search, navigation, and responsive pages."],
-    ["Workbench", "A collection of experiments that are too small for standalone repositories."]
-  ]),
-  now: page("Now", "What I am focused on now.", [
-    ["Current focus", "Merging the old GitHub Pages blog with a cleaner personal homepage."],
-    ["Recently", "Refreshing 光明螺旋 into a compact, searchable personal site."]
-  ]),
+  `, {}, "book-intelligence"),
+  projects: {
+    title: "Projects",
+    text: "Projects 项目 Personal website Workbench",
+    render: () => page(
+      t("projects"),
+      "",
+      currentLanguage === "en"
+        ? [["Personal website", "A compact, searchable home for writing, reading, and projects."], ["Workbench", "Small experiments and prototypes in progress."]]
+        : [["个人网站", "汇集写作、阅读与项目的极简个人主页。"], ["工作台", "持续进行中的小型实验与原型。"]]
+    ).render()
+  },
   privacy: page("Privacy", "This static website does not intentionally collect personal data.", [
     ["Analytics", "No analytics script is included in this local version."],
     ["Contact", "Email links open your mail client and are not processed by this site."]
@@ -195,7 +190,7 @@ for (const article of allImportedPosts) {
   pages[article.id] = post(article.title, article.publishedAt, article.content, {
     source: article.source,
     sources
-  });
+  }, article.id);
 }
 
 function formatDate(value) {
@@ -203,19 +198,20 @@ function formatDate(value) {
   return `${year}.${month}.${day}`;
 }
 
-function renderPostList(posts, showSummary) {
+function renderPostList(posts) {
   return `
     <div class="post-list">
-      ${posts.map((article) => `
+      ${posts.map((originalArticle) => {
+        const article = localizedArticle(originalArticle);
+        return `
         <a class="post-row" href="#${article.id}" data-route="${article.id}">
           <time datetime="${article.publishedAt}">${formatDate(article.publishedAt)}</time>
           <span class="post-row-copy">
             <strong>${article.title}</strong>
-            ${showSummary ? `<span>${article.summary}</span>` : ""}
           </span>
           <span class="post-arrow" aria-hidden="true">↗</span>
         </a>
-      `).join("")}
+      `;}).join("")}
     </div>
   `;
 }
@@ -227,7 +223,6 @@ function page(title, description, items) {
     render: () => `
       <section class="page">
         <h1>${title}</h1>
-        <p>${description}</p>
         <div class="item-list">
           ${items.map(([heading, body]) => `<article class="item"><h2>${heading}</h2><p>${body}</p></article>`).join("")}
         </div>
@@ -236,25 +231,31 @@ function page(title, description, items) {
   };
 }
 
-function post(title, date, body, metadata = {}) {
-  const plainText = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-  const minutes = Math.max(1, Math.ceil(plainText.length / 450));
+function post(title, date, body, metadata = {}, translationKey = "") {
   return {
     title,
     text: `${title} ${date} ${body.replace(/<[^>]+>/g, " ")}`,
-    render: () => `
+    displayTitle: () => currentLanguage === "en" && englishArticles[translationKey] ? englishArticles[translationKey].title : title,
+    render: () => {
+      const translation = currentLanguage === "en" ? englishArticles[translationKey] : null;
+      const visibleTitle = translation?.title || title;
+      const visibleBody = translation?.content || body;
+      const plainText = visibleBody.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      const minutes = Math.max(1, Math.ceil(plainText.length / (currentLanguage === "en" ? 1000 : 450)));
+      return `
       <article class="page post">
-        <a class="back-link" href="#blog" data-route="blog">← 返回写作</a>
+        <a class="back-link" href="#blog" data-route="blog">← ${t("backToWriting")}</a>
+        ${translation ? `<p class="translation-note">Translated from the original Chinese article.</p>` : ""}
         <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "光明螺旋")}</div>
-        <h1>${title}</h1>
+        <h1>${visibleTitle}</h1>
         <div class="post-meta">
           <time datetime="${date}">${formatDate(date)}</time>
-          <span>${minutes} 分钟阅读</span>
-          ${metadata.sources ? metadata.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${source.label} 原文 ↗</a>`).join("") : ""}
+          <span>${minutes} ${t("minuteRead")}</span>
+          ${metadata.sources ? metadata.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${source.label} ${t("original")} ↗</a>`).join("") : ""}
         </div>
-        <div class="post-body">${body}</div>
+        <div class="post-body">${visibleBody}</div>
       </article>
-    `
+    `;}
   };
 }
 
@@ -267,7 +268,9 @@ const searchResults = document.querySelector("[data-search-results]");
 function navigate(route) {
   const key = pages[route] ? route : "home";
   app.innerHTML = pages[key].render();
-  document.title = key === "home" ? "光明螺旋 — Jingyu" : `${pages[key].title} | 光明螺旋`;
+  const visibleTitle = pages[key].displayTitle ? pages[key].displayTitle() :
+    ({ home: t("brand"), blog: t("writing"), books: t("reading"), projects: t("projects") }[key] || pages[key].title);
+  document.title = key === "home" ? `${t("brand")} — Jingyu` : `${visibleTitle} | ${t("brand")}`;
   mobileNav.classList.remove("is-open");
   app.focus({ preventScroll: true });
   window.scrollTo({ top: 0, left: 0 });
@@ -294,17 +297,38 @@ function closeSearch() {
 function renderSearch(query) {
   const q = query.trim().toLowerCase();
   const matches = Object.entries(pages).filter(([, pageData]) => {
-    return !q || `${pageData.title} ${pageData.text}`.toLowerCase().includes(q);
+    const title = pageData.displayTitle ? pageData.displayTitle() : pageData.title;
+    return !q || `${title} ${pageData.text}`.toLowerCase().includes(q);
   });
 
   searchResults.innerHTML = matches
     .map(([route, pageData]) => `
       <a class="result" href="#${route}" data-route="${route}">
-        <strong>${pageData.title}</strong>
-        <span>${pageData.text.split(" ").slice(0, 16).join(" ")}...</span>
+        <strong>${pageData.displayTitle ? pageData.displayTitle() : pageData.title}</strong>
       </a>
     `)
     .join("");
+}
+
+function applyLanguage() {
+  document.documentElement.lang = currentLanguage === "en" ? "en" : "zh-CN";
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.querySelectorAll("[data-language]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.language === currentLanguage));
+  });
+  searchInput.placeholder = t("searchPages");
+}
+
+function setLanguage(language) {
+  currentLanguage = language === "en" ? "en" : "zh";
+  const url = new URL(window.location.href);
+  if (currentLanguage === "en") url.searchParams.set("lang", "en");
+  else url.searchParams.delete("lang");
+  history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  applyLanguage();
+  navigate(currentRoute());
 }
 
 document.addEventListener("click", (event) => {
@@ -321,6 +345,8 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-open-search]")) openSearch();
   if (event.target.closest("[data-close-search]")) closeSearch();
   if (event.target.closest("[data-menu-toggle]")) mobileNav.classList.toggle("is-open");
+  const languageButton = event.target.closest("[data-language]");
+  if (languageButton) setLanguage(languageButton.dataset.language);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -334,4 +360,5 @@ document.addEventListener("keydown", (event) => {
 searchInput.addEventListener("input", (event) => renderSearch(event.target.value));
 window.addEventListener("popstate", () => navigate(currentRoute()));
 
+applyLanguage();
 navigate(currentRoute());

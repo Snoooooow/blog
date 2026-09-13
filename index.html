@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,23 +25,27 @@
     <meta property="og:site_name" content="光明螺旋" />
     <meta name="twitter:card" content="summary" />
     <link rel="alternate" type="application/rss+xml" title="光明螺旋 - All Posts" href="./feed.xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260913" />
+    <link rel="stylesheet" href="./styles.css?v=20260913b" />
   </head>
   <body>
     <nav class="topbar">
       <div class="nav-inner">
-        <a class="brand" href="#home" data-route="home"><span>光明螺旋</span><small>Jingyu</small></a>
+        <a class="brand" href="#home" data-route="home"><span data-i18n="brand">光明螺旋</span><small>Jingyu</small></a>
 
         <div class="desktop-nav" aria-label="Primary navigation">
           <button class="search-button" type="button" data-open-search aria-label="Open search">
             <span class="icon">S</span>
-            <span>Search...</span>
+            <span data-i18n="search">搜索...</span>
             <kbd>Cmd K</kbd>
           </button>
-          <a href="#blog" data-route="blog">写作</a>
-          <a href="#books" data-route="books">阅读</a>
-          <a href="#projects" data-route="projects">项目</a>
-          <a href="#now" data-route="now">近况</a>
+          <a href="#blog" data-route="blog" data-i18n="writing">写作</a>
+          <a href="#books" data-route="books" data-i18n="reading">阅读</a>
+          <a href="#projects" data-route="projects" data-i18n="projects">项目</a>
+          <div class="language-switcher" aria-label="Language">
+            <button type="button" data-language="zh" aria-pressed="true">中文</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" data-language="en" aria-pressed="false">EN</button>
+          </div>
         </div>
 
         <div class="mobile-actions">
@@ -50,10 +54,14 @@
         </div>
       </div>
       <div class="mobile-nav" data-mobile-nav>
-        <a href="#blog" data-route="blog">写作</a>
-        <a href="#books" data-route="books">阅读</a>
-        <a href="#projects" data-route="projects">项目</a>
-        <a href="#now" data-route="now">近况</a>
+        <a href="#blog" data-route="blog" data-i18n="writing">写作</a>
+        <a href="#books" data-route="books" data-i18n="reading">阅读</a>
+        <a href="#projects" data-route="projects" data-i18n="projects">项目</a>
+        <div class="language-switcher" aria-label="Language">
+          <button type="button" data-language="zh" aria-pressed="true">中文</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </nav>
 
@@ -66,7 +74,7 @@
         <a href="./feed.xml" aria-label="RSS feed">RSS</a>
       </div>
       <div class="legal">
-        <span>© 2026 Jingyu · 光明螺旋</span>
+        <span>© 2026 Jingyu · <span data-i18n="brand">光明螺旋</span></span>
       </div>
     </footer>
 
@@ -84,6 +92,7 @@
 
     <script src="./posts.js"></script>
     <script src="./medium-posts.js"></script>
-    <script src="./app.js?v=20260913"></script>
+    <script src="./translations.js?v=20260913b"></script>
+    <script src="./app.js?v=20260913b"></script>
   </body>
 </html>
