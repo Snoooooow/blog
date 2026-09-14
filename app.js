@@ -3,21 +3,21 @@ const legacyPosts = [
     id: "post-january",
     title: "一月",
     publishedAt: "2023-01-28T23:15:19",
-    source: "光明螺旋",
+    source: "庆",
     summary: "关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。"
   },
   {
     id: "post-wang-xiaobo",
     title: "有时候人会忘记把自己当做是个人看",
     publishedAt: "2020-02-02T18:34:19",
-    source: "光明螺旋",
+    source: "庆",
     summary: "重读《思维的乐趣》：关于王小波、思维、自由、传统和真实表达。"
   },
   {
     id: "post-first",
     title: "第一篇",
     publishedAt: "2020-01-26T17:17:19",
-    source: "光明螺旋",
+    source: "庆",
     summary: "这个中二的小站名字是我梦中出现的名字。以后在这里集中写一些东西。"
   }
 ];
@@ -55,6 +55,16 @@ const articleIndex = dedupeByOldestPublication([...allImportedPosts, ...legacyPo
   b.publishedAt.localeCompare(a.publishedAt)
 );
 
+const readingNoteIds = new Set([
+  "wp-83",
+  "wp-50",
+  "post-wang-xiaobo",
+  "medium-a31d025bb2b",
+  "medium-43177d6feb22"
+]);
+const readingNotes = articleIndex.filter((article) => readingNoteIds.has(article.id));
+const writingArticles = articleIndex.filter((article) => !readingNoteIds.has(article.id));
+
 let currentLanguage = new URLSearchParams(window.location.search).get("lang") === "en" ? "en" : "zh";
 
 function t(key) {
@@ -69,14 +79,11 @@ function localizedArticle(article) {
 const pages = {
   home: {
     title: "Home",
-    text: "Jingyu 光明螺旋 Snoooooow personal website homepage software projects writing books now.",
+    text: "Jingyu 庆 Snoooooow personal website homepage software projects writing books.",
     render: () => `
       <section class="home">
-        <header class="home-intro">
-          <h1>${t("brand")}</h1>
-        </header>
         <section class="home-writing" aria-label="${t("writing")}">
-          ${renderPostList(articleIndex.slice(0, 6))}
+          ${renderPostList(writingArticles.slice(0, 6))}
           <div class="archive-pager-wrap">
             <a class="archive-pager" href="#blog" data-route="blog" aria-label="${t("viewAll")}">»</a>
           </div>
@@ -86,11 +93,21 @@ const pages = {
   },
   blog: {
     title: "Blog",
-    text: articleIndex.map((article) => `${article.title} ${article.summary}`).join(" "),
+    text: writingArticles.map((article) => `${article.title} ${article.summary}`).join(" "),
     render: () => `
       <section class="page archive-page">
         <h1>${t("writing")}</h1>
-        ${renderPostList(articleIndex)}
+        ${renderPostList(writingArticles)}
+      </section>
+    `
+  },
+  "reading-notes": {
+    title: "Reading Notes",
+    text: readingNotes.map((article) => `${article.title} ${article.summary}`).join(" "),
+    render: () => `
+      <section class="page archive-page">
+        <h1>${t("readingNotes")}</h1>
+        ${renderPostList(readingNotes)}
       </section>
     `
   },
@@ -136,14 +153,15 @@ const pages = {
     render: () => `
       <section class="page books-page">
         <h1>${t("reading")}</h1>
-        <div class="book-tabs" aria-label="Book shelves">
-          <span class="is-active">${t("wantToRead")}</span>
-          <span>${t("readingNow")}</span>
-          <span>${t("read")}</span>
+        <div class="book-tabs" aria-label="Book shelves" role="tablist">
+          <button class="is-active" type="button" data-book-filter="want" aria-pressed="true">${t("wantToRead")}</button>
+          <button type="button" data-book-filter="reading" aria-pressed="false">${t("readingNow")}</button>
+          <button type="button" data-book-filter="read" aria-pressed="false">${t("read")}</button>
+          <button type="button" data-book-filter="all" aria-pressed="false">${t("allBooks")}</button>
         </div>
-        <div class="book-count">1</div>
-        <div class="book-list">
-          <a class="book-card" href="#book-intelligence" data-route="book-intelligence">
+        <div class="book-count" data-book-count>1</div>
+        <div class="book-list" data-book-list>
+          <a class="book-card" href="#book-intelligence" data-route="book-intelligence" data-book-status="want">
             <span class="book-cover">
               <img src="./assets/books/brief-history-of-intelligence.jpg" alt="《智能简史》封面" loading="lazy" />
             </span>
@@ -154,6 +172,7 @@ const pages = {
             </span>
           </a>
         </div>
+        <p class="book-empty" data-book-empty hidden>${t("noBooks")}</p>
       </section>
     `
   },
@@ -242,11 +261,13 @@ function post(title, date, body, metadata = {}, translationKey = "") {
       const visibleBody = translation?.content || body;
       const plainText = visibleBody.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
       const minutes = Math.max(1, Math.ceil(plainText.length / (currentLanguage === "en" ? 1000 : 450)));
+      const backRoute = translationKey === "book-intelligence" ? "books" : (readingNoteIds.has(translationKey) ? "reading-notes" : "blog");
+      const backLabel = translationKey === "book-intelligence" ? t("backToReading") : (readingNoteIds.has(translationKey) ? t("backToReadingNotes") : t("backToWriting"));
       return `
       <article class="page post">
-        <a class="back-link" href="#blog" data-route="blog">← ${t("backToWriting")}</a>
+        <a class="back-link" href="#${backRoute}" data-route="${backRoute}">← ${backLabel}</a>
         ${translation ? `<p class="translation-note">Translated from the original Chinese article.</p>` : ""}
-        <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "光明螺旋")}</div>
+        <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "庆")}</div>
         <h1>${visibleTitle}</h1>
         <div class="post-meta">
           <time datetime="${date}">${formatDate(date)}</time>
@@ -269,7 +290,7 @@ function navigate(route) {
   const key = pages[route] ? route : "home";
   app.innerHTML = pages[key].render();
   const visibleTitle = pages[key].displayTitle ? pages[key].displayTitle() :
-    ({ home: t("brand"), blog: t("writing"), books: t("reading"), projects: t("projects") }[key] || pages[key].title);
+    ({ home: t("brand"), blog: t("writing"), "reading-notes": t("readingNotes"), books: t("reading"), projects: t("projects") }[key] || pages[key].title);
   document.title = key === "home" ? `${t("brand")} — Jingyu` : `${visibleTitle} | ${t("brand")}`;
   mobileNav.classList.remove("is-open");
   app.focus({ preventScroll: true });
@@ -331,6 +352,30 @@ function setLanguage(language) {
   navigate(currentRoute());
 }
 
+function filterBooks(filter) {
+  const buttons = [...document.querySelectorAll("[data-book-filter]")];
+  const books = [...document.querySelectorAll("[data-book-status]")];
+  if (!buttons.length) return;
+
+  buttons.forEach((button) => {
+    const isActive = button.dataset.bookFilter === filter;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  let visibleCount = 0;
+  books.forEach((book) => {
+    const isVisible = filter === "all" || book.dataset.bookStatus === filter;
+    book.hidden = !isVisible;
+    if (isVisible) visibleCount += 1;
+  });
+
+  const count = document.querySelector("[data-book-count]");
+  const empty = document.querySelector("[data-book-empty]");
+  if (count) count.textContent = String(visibleCount);
+  if (empty) empty.hidden = visibleCount !== 0;
+}
+
 document.addEventListener("click", (event) => {
   const routeLink = event.target.closest("[data-route]");
   if (routeLink) {
@@ -345,6 +390,8 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-open-search]")) openSearch();
   if (event.target.closest("[data-close-search]")) closeSearch();
   if (event.target.closest("[data-menu-toggle]")) mobileNav.classList.toggle("is-open");
+  const bookFilter = event.target.closest("[data-book-filter]");
+  if (bookFilter) filterBooks(bookFilter.dataset.bookFilter);
   const languageButton = event.target.closest("[data-language]");
   if (languageButton) setLanguage(languageButton.dataset.language);
 });

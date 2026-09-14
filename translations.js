@@ -1,33 +1,43 @@
 const siteTranslations = {
   zh: {
-    brand: "光明螺旋",
+    brand: "庆",
     search: "搜索...",
     searchPages: "搜索文章...",
     writing: "写作",
+    readingNotes: "读书笔记",
     reading: "阅读",
     projects: "项目",
     viewAll: "查看全部文章",
     backToWriting: "返回写作",
+    backToReadingNotes: "返回读书笔记",
+    backToReading: "返回阅读",
     minuteRead: "分钟阅读",
     original: "原文",
     wantToRead: "想读",
     readingNow: "在读",
-    read: "读过"
+    read: "读过",
+    allBooks: "全部",
+    noBooks: "这个书架还是空的。"
   },
   en: {
-    brand: "Luminous Spiral",
+    brand: "庆",
     search: "Search...",
     searchPages: "Search articles...",
     writing: "Writing",
+    readingNotes: "Reading Notes",
     reading: "Reading",
     projects: "Projects",
     viewAll: "View all articles",
     backToWriting: "Back to writing",
+    backToReadingNotes: "Back to reading notes",
+    backToReading: "Back to reading",
     minuteRead: "min read",
     original: "original",
     wantToRead: "Want to Read",
     readingNow: "Reading",
-    read: "Read"
+    read: "Read",
+    allBooks: "All",
+    noBooks: "This shelf is still empty."
   }
 };
 
