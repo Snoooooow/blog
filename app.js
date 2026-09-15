@@ -266,7 +266,7 @@ function post(title, date, body, metadata = {}, translationKey = "") {
       return `
       <article class="page post">
         <a class="back-link" href="#${backRoute}" data-route="${backRoute}">← ${backLabel}</a>
-        ${translation ? `<p class="translation-note">Translated from the original Chinese article.</p>` : ""}
+        ${translation ? `<p class="translation-note">Translated from the original Chinese and lightly adapted for natural English.</p>` : ""}
         <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "庆")}</div>
         <h1>${visibleTitle}</h1>
         <div class="post-meta">
