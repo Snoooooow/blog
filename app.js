@@ -3,21 +3,21 @@ const legacyPosts = [
     id: "post-january",
     title: "一月",
     publishedAt: "2023-01-28T23:15:19",
-    source: "庆",
+    source: "庆橙",
     summary: "关于 level / 管理者祛魅，以及行为和目的互相生成的短笔记。"
   },
   {
     id: "post-wang-xiaobo",
     title: "有时候人会忘记把自己当做是个人看",
     publishedAt: "2020-02-02T18:34:19",
-    source: "庆",
+    source: "庆橙",
     summary: "重读《思维的乐趣》：关于王小波、思维、自由、传统和真实表达。"
   },
   {
     id: "post-first",
     title: "第一篇",
     publishedAt: "2020-01-26T17:17:19",
-    source: "庆",
+    source: "庆橙",
     summary: "这个中二的小站名字是我梦中出现的名字。以后在这里集中写一些东西。"
   }
 ];
@@ -79,7 +79,7 @@ function localizedArticle(article) {
 const pages = {
   home: {
     title: "Home",
-    text: "Jingyu 庆 Snoooooow personal website homepage software projects writing books.",
+    text: "Jingyu 庆橙 Snoooooow personal website homepage software projects writing books.",
     render: () => `
       <section class="home">
         <section class="home-writing" aria-label="${t("writing")}">
@@ -267,7 +267,7 @@ function post(title, date, body, metadata = {}, translationKey = "") {
       <article class="page post">
         <a class="back-link" href="#${backRoute}" data-route="${backRoute}">← ${backLabel}</a>
         ${translation ? `<p class="translation-note">Translated from the original Chinese and lightly adapted for natural English.</p>` : ""}
-        <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "庆")}</div>
+        <div class="post-kicker">${metadata.sources ? metadata.sources.map((source) => source.label).join(" · ") : (metadata.source || "庆橙")}</div>
         <h1>${visibleTitle}</h1>
         <div class="post-meta">
           <time datetime="${date}">${formatDate(date)}</time>

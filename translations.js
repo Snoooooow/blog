@@ -1,6 +1,6 @@
 const siteTranslations = {
   zh: {
-    brand: "庆",
+    brand: "庆橙",
     search: "搜索...",
     searchPages: "搜索文章...",
     writing: "写作",
@@ -20,7 +20,7 @@ const siteTranslations = {
     noBooks: "这个书架还是空的。"
   },
   en: {
-    brand: "庆",
+    brand: "庆橙",
     search: "Search...",
     searchPages: "Search articles...",
     writing: "Writing",
