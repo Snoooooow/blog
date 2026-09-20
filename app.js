@@ -76,6 +76,180 @@ function localizedArticle(article) {
   return { ...article, ...englishArticles[article.id] };
 }
 
+const readingBooks = [
+  {
+    titleZh: "智能简史",
+    titleEn: "A Brief History of Intelligence",
+    authorZh: "[美] 麦克斯·班尼特",
+    authorEn: "Max Bennett",
+    metaZh: "中译出版社 · 2025 · 想读",
+    metaEn: "CITIC Press · 2025 · Want to read",
+    cover: "brief-history-of-intelligence.jpg",
+    status: "want",
+    route: "book-intelligence"
+  },
+  {
+    titleZh: "智能：AI时代的商业、组织与战略的本质",
+    titleEn: "Intelligence: Business, Organization, and Strategy in the AI Era",
+    authorZh: "曾鸣",
+    authorEn: "Zeng Ming",
+    cover: "intelligence-ai-era.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "Million Dollar Weekend",
+    titleEn: "Million Dollar Weekend",
+    authorZh: "[美] Noah Kagan、Tahl Raz",
+    authorEn: "Noah Kagan and Tahl Raz",
+    cover: "million-dollar-weekend.jpg",
+    status: "want",
+    doubanUrl: "https://book.douban.com/subject/36759480/"
+  },
+  {
+    titleZh: "深度学习推荐系统2.0",
+    titleEn: "Deep Learning Recommender Systems 2.0",
+    authorZh: "王喆",
+    authorEn: "Wang Zhe",
+    cover: "recommender-systems-2.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "真希望我父母读过这本书",
+    titleEn: "The Book You Wish Your Parents Had Read",
+    authorZh: "[英] 菲利帕·佩里",
+    authorEn: "Philippa Perry",
+    cover: "parents-read-this-book.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "以日为鉴：衰退时代生存指南",
+    titleEn: "Learning from Japan: A Survival Guide for an Era of Decline",
+    authorZh: "分析师Boden",
+    authorEn: "Boden",
+    cover: "learning-from-japan.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "康熙的红票：全球化中的清朝",
+    titleEn: "Emperor Kangxi's Red Manifesto",
+    authorZh: "孙立天",
+    authorEn: "Sun Litian",
+    cover: "kangxi-red-manifesto.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "党员、党权与党争",
+    titleEn: "Party Members, Party Power, and Party Struggles",
+    authorZh: "王奇生",
+    authorEn: "Wang Qisheng",
+    cover: "party-power-struggles.jpg",
+    status: "want",
+    doubanUrl: "https://book.douban.com/subject/3924144/"
+  },
+  {
+    titleZh: "独裁者手册",
+    titleEn: "The Dictator's Handbook",
+    authorZh: "[美] 布鲁斯·布恩诺·德·梅斯奎塔、阿拉斯泰尔·史密斯",
+    authorEn: "Bruce Bueno de Mesquita and Alastair Smith",
+    cover: "dictators-handbook.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "李诞脱口秀工作手册",
+    titleEn: "Li Dan's Stand-Up Comedy Work Manual",
+    authorZh: "李诞",
+    authorEn: "Li Dan",
+    cover: "li-dan-standup-manual.jpg",
+    status: "want",
+    doubanUrl: "https://book.douban.com/subject/35552655/"
+  },
+  {
+    titleZh: "东晋门阀政治",
+    titleEn: "The Aristocratic Politics of the Eastern Jin",
+    authorZh: "田余庆",
+    authorEn: "Tian Yuqing",
+    cover: "eastern-jin-politics.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "大道：段永平投资问答录",
+    titleEn: "The Way: Duan Yongping's Investment Q&A",
+    authorZh: "赵理亚 选编、芒格书院 编",
+    authorEn: "Selected by Zhao Liya; Munger Academy",
+    cover: "the-way-duan-yongping.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "波峰与波谷：秦汉魏晋南北朝的政治文明",
+    titleEn: "Peaks and Valleys",
+    authorZh: "阎步克",
+    authorEn: "Yan Buke",
+    cover: "peaks-and-valleys.png",
+    status: "want"
+  },
+  {
+    titleZh: "The Mom Test",
+    titleEn: "The Mom Test",
+    authorZh: "[英] Rob Fitzpatrick",
+    authorEn: "Rob Fitzpatrick",
+    cover: "the-mom-test.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "天朝的崩溃：鸦片战争再研究",
+    titleEn: "The Collapse of the Heavenly Dynasty",
+    authorZh: "茅海建",
+    authorEn: "Mao Haijian",
+    cover: "collapse-of-heavenly-dynasty.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "南明史",
+    titleEn: "A History of the Southern Ming",
+    authorZh: "顾诚",
+    authorEn: "Gu Cheng",
+    cover: "southern-ming-history.jpg",
+    status: "want"
+  },
+  {
+    titleZh: "邓小平时代",
+    titleEn: "Deng Xiaoping and the Transformation of China",
+    authorZh: "[美] 傅高义",
+    authorEn: "Ezra F. Vogel",
+    cover: "deng-xiaoping-era.jpg",
+    status: "want",
+    doubanUrl: "https://book.douban.com/subject/20424526/"
+  }
+];
+
+function doubanBookSearch(title) {
+  return `https://search.douban.com/book/subject_search?search_text=${encodeURIComponent(title)}&cat=1001`;
+}
+
+function renderBookCard(book) {
+  const title = currentLanguage === "en" ? book.titleEn : book.titleZh;
+  const author = currentLanguage === "en" ? book.authorEn : book.authorZh;
+  const meta = currentLanguage === "en"
+    ? (book.metaEn || "Want to read · Douban reference")
+    : (book.metaZh || "想读 · 豆瓣参考");
+  const link = book.route
+    ? `href="#${book.route}" data-route="${book.route}"`
+    : `href="${book.doubanUrl || doubanBookSearch(book.titleZh)}" target="_blank" rel="noreferrer"`;
+
+  return `
+    <a class="book-card" ${link} data-book-status="${book.status}">
+      <span class="book-cover">
+        <img src="./assets/books/${book.cover}" alt="《${book.titleZh}》封面" loading="lazy" />
+      </span>
+      <span class="book-info">
+        <span class="book-title">${title}</span>
+        <span class="book-author">${author}</span>
+        <span class="book-meta">${meta}</span>
+      </span>
+    </a>
+  `;
+}
+
 const pages = {
   home: {
     title: "Home",
@@ -149,7 +323,7 @@ const pages = {
   ]),
   books: {
     title: "Books",
-    text: "Books 1 book summaries notes to read reading read 智能简史 麦克斯·班尼特 Max Bennett A Brief History of Intelligence",
+    text: readingBooks.map((book) => `${book.titleZh} ${book.titleEn} ${book.authorZh} ${book.authorEn}`).join(" "),
     render: () => `
       <section class="page books-page">
         <h1>${t("reading")}</h1>
@@ -159,18 +333,9 @@ const pages = {
           <button type="button" data-book-filter="read" aria-pressed="false">${t("read")}</button>
           <button type="button" data-book-filter="all" aria-pressed="false">${t("allBooks")}</button>
         </div>
-        <div class="book-count" data-book-count>1</div>
+        <div class="book-count" data-book-count>${readingBooks.length}</div>
         <div class="book-list" data-book-list>
-          <a class="book-card" href="#book-intelligence" data-route="book-intelligence" data-book-status="want">
-            <span class="book-cover">
-              <img src="./assets/books/brief-history-of-intelligence.jpg" alt="《智能简史》封面" loading="lazy" />
-            </span>
-            <span class="book-info">
-              <span class="book-title">${currentLanguage === "en" ? "A Brief History of Intelligence" : "智能简史"}</span>
-              <span class="book-author">${currentLanguage === "en" ? "Max Bennett" : "[美] 麦克斯·班尼特"}</span>
-              <span class="book-meta">${currentLanguage === "en" ? "CITIC Press · 2025 · Want to read" : "中译出版社 · 2025 · 想读"}</span>
-            </span>
-          </a>
+          ${readingBooks.map(renderBookCard).join("")}
         </div>
         <p class="book-empty" data-book-empty hidden>${t("noBooks")}</p>
       </section>
