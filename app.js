@@ -82,10 +82,11 @@ const readingBooks = [
     titleEn: "A Brief History of Intelligence",
     authorZh: "[美] 麦克斯·班尼特",
     authorEn: "Max Bennett",
-    metaZh: "中译出版社 · 2025 · 想读",
-    metaEn: "CITIC Press · 2025 · Want to read",
+    metaZh: "中译出版社 · 2025 · 读过",
+    metaEn: "CITIC Press · 2025 · Read",
     cover: "brief-history-of-intelligence.jpg",
-    status: "want",
+    status: "read",
+    rating: 5,
     route: "book-intelligence"
   },
   {
@@ -94,7 +95,7 @@ const readingBooks = [
     authorZh: "曾鸣",
     authorEn: "Zeng Ming",
     cover: "intelligence-ai-era.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "Million Dollar Weekend",
@@ -102,7 +103,7 @@ const readingBooks = [
     authorZh: "[美] Noah Kagan、Tahl Raz",
     authorEn: "Noah Kagan and Tahl Raz",
     cover: "million-dollar-weekend.jpg",
-    status: "want",
+    status: "read",
     doubanUrl: "https://book.douban.com/subject/36759480/"
   },
   {
@@ -111,7 +112,7 @@ const readingBooks = [
     authorZh: "王喆",
     authorEn: "Wang Zhe",
     cover: "recommender-systems-2.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "真希望我父母读过这本书",
@@ -119,7 +120,7 @@ const readingBooks = [
     authorZh: "[英] 菲利帕·佩里",
     authorEn: "Philippa Perry",
     cover: "parents-read-this-book.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "以日为鉴：衰退时代生存指南",
@@ -127,7 +128,7 @@ const readingBooks = [
     authorZh: "分析师Boden",
     authorEn: "Boden",
     cover: "learning-from-japan.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "康熙的红票：全球化中的清朝",
@@ -135,7 +136,7 @@ const readingBooks = [
     authorZh: "孙立天",
     authorEn: "Sun Litian",
     cover: "kangxi-red-manifesto.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "党员、党权与党争",
@@ -143,7 +144,7 @@ const readingBooks = [
     authorZh: "王奇生",
     authorEn: "Wang Qisheng",
     cover: "party-power-struggles.jpg",
-    status: "want",
+    status: "read",
     doubanUrl: "https://book.douban.com/subject/3924144/"
   },
   {
@@ -152,7 +153,7 @@ const readingBooks = [
     authorZh: "[美] 布鲁斯·布恩诺·德·梅斯奎塔、阿拉斯泰尔·史密斯",
     authorEn: "Bruce Bueno de Mesquita and Alastair Smith",
     cover: "dictators-handbook.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "李诞脱口秀工作手册",
@@ -160,7 +161,7 @@ const readingBooks = [
     authorZh: "李诞",
     authorEn: "Li Dan",
     cover: "li-dan-standup-manual.jpg",
-    status: "want",
+    status: "read",
     doubanUrl: "https://book.douban.com/subject/35552655/"
   },
   {
@@ -169,7 +170,7 @@ const readingBooks = [
     authorZh: "田余庆",
     authorEn: "Tian Yuqing",
     cover: "eastern-jin-politics.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "大道：段永平投资问答录",
@@ -177,7 +178,7 @@ const readingBooks = [
     authorZh: "赵理亚 选编、芒格书院 编",
     authorEn: "Selected by Zhao Liya; Munger Academy",
     cover: "the-way-duan-yongping.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "波峰与波谷：秦汉魏晋南北朝的政治文明",
@@ -185,7 +186,7 @@ const readingBooks = [
     authorZh: "阎步克",
     authorEn: "Yan Buke",
     cover: "peaks-and-valleys.png",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "The Mom Test",
@@ -193,7 +194,7 @@ const readingBooks = [
     authorZh: "[英] Rob Fitzpatrick",
     authorEn: "Rob Fitzpatrick",
     cover: "the-mom-test.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "天朝的崩溃：鸦片战争再研究",
@@ -201,7 +202,7 @@ const readingBooks = [
     authorZh: "茅海建",
     authorEn: "Mao Haijian",
     cover: "collapse-of-heavenly-dynasty.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "南明史",
@@ -209,7 +210,7 @@ const readingBooks = [
     authorZh: "顾诚",
     authorEn: "Gu Cheng",
     cover: "southern-ming-history.jpg",
-    status: "want"
+    status: "read"
   },
   {
     titleZh: "邓小平时代",
@@ -217,7 +218,7 @@ const readingBooks = [
     authorZh: "[美] 傅高义",
     authorEn: "Ezra F. Vogel",
     cover: "deng-xiaoping-era.jpg",
-    status: "want",
+    status: "read",
     doubanUrl: "https://book.douban.com/subject/20424526/"
   }
 ];
@@ -229,22 +230,30 @@ function doubanBookSearch(title) {
 function renderBookCard(book) {
   const title = currentLanguage === "en" ? book.titleEn : book.titleZh;
   const author = currentLanguage === "en" ? book.authorEn : book.authorZh;
-  const meta = currentLanguage === "en"
-    ? (book.metaEn || "Want to read · Douban reference")
-    : (book.metaZh || "想读 · 豆瓣参考");
+  const rating = Number(book.rating) || 0;
+  const stars = Array.from({ length: 5 }, (_, index) => {
+    const isFilled = index < rating;
+    return `<span class="${isFilled ? "is-filled" : ""}" aria-hidden="true">${isFilled ? "★" : "☆"}</span>`;
+  }).join("");
+  const ratingLabel = rating
+    ? (currentLanguage === "en" ? `${rating} out of 5 stars` : `${rating} 星（满分 5 星）`)
+    : (currentLanguage === "en" ? "Not rated" : "未评分");
   const link = book.route
     ? `href="#${book.route}" data-route="${book.route}"`
     : `href="${book.doubanUrl || doubanBookSearch(book.titleZh)}" target="_blank" rel="noreferrer"`;
 
   return `
-    <a class="book-card" ${link} data-book-status="${book.status}">
+    <a class="book-card" ${link}>
       <span class="book-cover">
         <img src="./assets/books/${book.cover}" alt="《${book.titleZh}》封面" loading="lazy" />
       </span>
       <span class="book-info">
         <span class="book-title">${title}</span>
         <span class="book-author">${author}</span>
-        <span class="book-meta">${meta}</span>
+        <span class="book-rating" aria-label="${ratingLabel}">
+          <span class="book-stars">${stars}</span>
+          ${rating ? `<span class="book-rating-value">${rating.toFixed(1)}</span>` : ""}
+        </span>
       </span>
     </a>
   `;
@@ -327,17 +336,9 @@ const pages = {
     render: () => `
       <section class="page books-page">
         <h1>${t("reading")}</h1>
-        <div class="book-tabs" aria-label="Book shelves" role="tablist">
-          <button class="is-active" type="button" data-book-filter="want" aria-pressed="true">${t("wantToRead")}</button>
-          <button type="button" data-book-filter="reading" aria-pressed="false">${t("readingNow")}</button>
-          <button type="button" data-book-filter="read" aria-pressed="false">${t("read")}</button>
-          <button type="button" data-book-filter="all" aria-pressed="false">${t("allBooks")}</button>
-        </div>
-        <div class="book-count" data-book-count>${readingBooks.length}</div>
         <div class="book-list" data-book-list>
           ${readingBooks.map(renderBookCard).join("")}
         </div>
-        <p class="book-empty" data-book-empty hidden>${t("noBooks")}</p>
       </section>
     `
   },
@@ -517,30 +518,6 @@ function setLanguage(language) {
   navigate(currentRoute());
 }
 
-function filterBooks(filter) {
-  const buttons = [...document.querySelectorAll("[data-book-filter]")];
-  const books = [...document.querySelectorAll("[data-book-status]")];
-  if (!buttons.length) return;
-
-  buttons.forEach((button) => {
-    const isActive = button.dataset.bookFilter === filter;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  let visibleCount = 0;
-  books.forEach((book) => {
-    const isVisible = filter === "all" || book.dataset.bookStatus === filter;
-    book.hidden = !isVisible;
-    if (isVisible) visibleCount += 1;
-  });
-
-  const count = document.querySelector("[data-book-count]");
-  const empty = document.querySelector("[data-book-empty]");
-  if (count) count.textContent = String(visibleCount);
-  if (empty) empty.hidden = visibleCount !== 0;
-}
-
 document.addEventListener("click", (event) => {
   const routeLink = event.target.closest("[data-route]");
   if (routeLink) {
@@ -555,8 +532,6 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-open-search]")) openSearch();
   if (event.target.closest("[data-close-search]")) closeSearch();
   if (event.target.closest("[data-menu-toggle]")) mobileNav.classList.toggle("is-open");
-  const bookFilter = event.target.closest("[data-book-filter]");
-  if (bookFilter) filterBooks(bookFilter.dataset.bookFilter);
   const languageButton = event.target.closest("[data-language]");
   if (languageButton) setLanguage(languageButton.dataset.language);
 });

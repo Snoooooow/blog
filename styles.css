@@ -444,37 +444,6 @@ input:focus-visible {
 .books-page { width: min(980px, 100%); max-width: none; }
 .book-summary { margin-bottom: 22px; }
 
-.book-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  border-bottom: 1px solid var(--line);
-  margin: 34px 0 18px;
-}
-
-.book-tabs button {
-  position: relative;
-  border: 0;
-  padding: 8px 0 12px;
-  background: transparent;
-  color: var(--muted);
-  font-size: 0.84rem;
-  cursor: pointer;
-}
-
-.book-tabs button.is-active,
-.book-tabs button:hover { color: var(--ink); }
-
-.book-tabs button.is-active::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 1px;
-  background: var(--ink);
-}
-
 .book-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -490,27 +459,14 @@ input:focus-visible {
   padding: 3px 8px;
 }
 
-.book-count {
-  margin: 22px 0 9px;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-}
-
-.book-empty {
-  margin: 36px 0 0;
-  color: var(--muted);
-  font-family: var(--serif);
-}
-
 .book-list {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 28px;
 }
 
 .book-card { display: grid; gap: 12px; }
-.book-card[hidden] { display: none; }
 
 .book-cover {
   aspect-ratio: 1080 / 1528;
@@ -539,6 +495,27 @@ input:focus-visible {
 
 .book-subtitle,
 .book-author { color: var(--muted); font-size: 0.84rem; }
+
+.book-rating {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.book-stars {
+  display: inline-flex;
+  gap: 1px;
+  color: #c8c7c2;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.book-stars .is-filled { color: #f5a623; }
+.book-rating-value { color: #c77d13; font-weight: 600; }
 
 .footer {
   width: min(1000px, calc(100vw - 48px));
