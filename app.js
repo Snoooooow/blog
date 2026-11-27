@@ -366,7 +366,12 @@ function mergeReadingBooks(importedBooks, curatedBooks) {
     };
   }
 
-  return merged;
+  return merged.sort((a, b) => {
+    if (a.readAt && b.readAt) return b.readAt.localeCompare(a.readAt);
+    if (a.readAt) return -1;
+    if (b.readAt) return 1;
+    return 0;
+  });
 }
 
 const readingBooks = mergeReadingBooks(doubanReadingBooks, curatedReadingBooks);
