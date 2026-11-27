@@ -333,7 +333,7 @@ function renderBookCard(book) {
 const pages = {
   home: {
     title: "Home",
-    text: "Jingyu 庆橙 Snoooooow personal website homepage software projects writing books.",
+    text: "Jingyu 庆橙 Snoooooow personal website homepage software writing books.",
     render: () => `
       <section class="home">
         <section class="home-writing" aria-label="${t("writing")}">
@@ -421,17 +421,6 @@ const pages = {
     <p>待补充正式读书笔记。</p>
     <p><a class="inline-link" href="https://book.douban.com/subject/37252220/" target="_blank" rel="noreferrer">豆瓣条目</a></p>
   `, {}, "book-intelligence"),
-  projects: {
-    title: "Projects",
-    text: "Projects 项目 Personal website Workbench",
-    render: () => page(
-      t("projects"),
-      "",
-      currentLanguage === "en"
-        ? [["Personal website", "A compact, searchable home for writing, reading, and projects."], ["Workbench", "Small experiments and prototypes in progress."]]
-        : [["个人网站", "汇集写作、阅读与项目的极简个人主页。"], ["工作台", "持续进行中的小型实验与原型。"]]
-    ).render()
-  },
   privacy: page("Privacy", "This static website does not intentionally collect personal data.", [
     ["Analytics", "No analytics script is included in this local version."],
     ["Contact", "Email links open your mail client and are not processed by this site."]
@@ -538,7 +527,7 @@ function navigate(route) {
   const key = pages[route] ? route : "home";
   app.innerHTML = pages[key].render();
   const visibleTitle = pages[key].displayTitle ? pages[key].displayTitle() :
-    ({ home: t("brand"), blog: t("writing"), "reading-notes": t("readingNotes"), books: t("reading"), projects: t("projects") }[key] || pages[key].title);
+    ({ home: t("brand"), blog: t("writing"), "reading-notes": t("readingNotes"), books: t("reading") }[key] || pages[key].title);
   document.title = key === "home" ? `${t("brand")} — Jingyu` : `${visibleTitle} | ${t("brand")}`;
   mobileNav.classList.remove("is-open");
   app.focus({ preventScroll: true });
