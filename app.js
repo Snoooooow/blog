@@ -65,6 +65,23 @@ const readingNoteIds = new Set([
 const readingNotes = articleIndex.filter((article) => readingNoteIds.has(article.id));
 const writingArticles = articleIndex.filter((article) => !readingNoteIds.has(article.id));
 
+const technicalWritingIds = new Set([
+  "wp-85",
+  "wp-78",
+  "wp-15",
+  "medium-c816723405ec"
+]);
+const shortWritingIds = new Set([
+  "wp-39",
+  "wp-36",
+  "wp-25"
+]);
+const technicalArticles = writingArticles.filter((article) => technicalWritingIds.has(article.id));
+const shortWritingArticles = writingArticles.filter((article) => shortWritingIds.has(article.id));
+const miscellaneousArticles = writingArticles.filter(
+  (article) => !technicalWritingIds.has(article.id) && !shortWritingIds.has(article.id)
+);
+
 let currentLanguage = new URLSearchParams(window.location.search).get("lang") === "en" ? "en" : "zh";
 
 function t(key) {
@@ -221,6 +238,58 @@ const readingBooks = [
     cover: "deng-xiaoping-era.jpg",
     status: "read",
     doubanUrl: "https://book.douban.com/subject/20424526/"
+  },
+  {
+    titleZh: "因为独特",
+    titleEn: "Because It Is Unique",
+    authorZh: "李翔",
+    authorEn: "Li Xiang",
+    cover: "because-unique.jpg",
+    status: "read",
+    rating: 5,
+    doubanUrl: "https://book.douban.com/subject/37105779/"
+  },
+  {
+    titleZh: "Simply Said",
+    titleEn: "Simply Said",
+    authorZh: "[美] Jay Sullivan",
+    authorEn: "Jay Sullivan",
+    cover: "simply-said.jpg",
+    status: "read",
+    rating: 5,
+    doubanUrl: "https://book.douban.com/subject/30468553/"
+  },
+  {
+    titleZh: "神经症与人的成长",
+    titleEn: "Neurosis and Human Growth",
+    authorZh: "[美] 卡伦·霍尼",
+    authorEn: "Karen Horney",
+    cover: "neurosis-human-growth.jpg",
+    status: "read",
+    rating: 5,
+    doubanUrl: "https://book.douban.com/subject/26774193/"
+  },
+  {
+    titleZh: "牧羊少年奇幻之旅",
+    titleEn: "The Alchemist",
+    authorZh: "[巴西] 保罗·柯艾略",
+    authorEn: "Paulo Coelho",
+    cover: "the-alchemist-zh.jpg",
+    status: "read",
+    rating: 5,
+    doubanUrl: "https://book.douban.com/subject/36091016/"
+  },
+  {
+    titleZh: "马斯克原理",
+    titleEn: "The Book of Elon",
+    authorZh: "[美] 埃里克·乔根森",
+    authorEn: "Eric Jorgenson",
+    cover: "musk-principles.jpg",
+    status: "read",
+    rating: 4,
+    noteZh: "与《马斯克传》有很多内容重叠。",
+    noteEn: "Substantial overlap with Elon Musk.",
+    doubanUrl: "https://book.douban.com/subject/38446077/"
   }
 ];
 
@@ -231,6 +300,7 @@ function doubanBookSearch(title) {
 function renderBookCard(book) {
   const title = currentLanguage === "en" ? book.titleEn : book.titleZh;
   const author = currentLanguage === "en" ? book.authorEn : book.authorZh;
+  const note = currentLanguage === "en" ? book.noteEn : book.noteZh;
   const rating = Number(book.rating) || 5;
   const stars = Array.from({ length: 5 }, (_, index) => {
     const isFilled = index < rating;
@@ -255,6 +325,7 @@ function renderBookCard(book) {
           <span class="book-stars">${stars}</span>
           ${rating ? `<span class="book-rating-value">${rating.toFixed(1)}</span>` : ""}
         </span>
+        ${note ? `<span class="book-note">${note}</span>` : ""}
       </span>
     </a>
   `;
@@ -281,7 +352,9 @@ const pages = {
     render: () => `
       <section class="page archive-page">
         <h1>${t("writing")}</h1>
-        ${renderPostList(writingArticles)}
+        ${renderWritingSection("technical", technicalArticles)}
+        ${renderWritingSection(currentLanguage === "en" ? "Short Pieces" : "写的小短文", shortWritingArticles)}
+        ${renderWritingSection(currentLanguage === "en" ? "Miscellany" : "杂思", miscellaneousArticles)}
       </section>
     `
   },
@@ -399,6 +472,15 @@ function renderPostList(posts) {
         </a>
       `;}).join("")}
     </div>
+  `;
+}
+
+function renderWritingSection(title, posts) {
+  return `
+    <section class="writing-section">
+      <h2>${title}</h2>
+      ${renderPostList(posts)}
+    </section>
   `;
 }
 

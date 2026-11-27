@@ -278,6 +278,19 @@ input:focus-visible {
 .archive-page { max-width: none; }
 .archive-page .page-lede { margin: 16px 0 58px; }
 
+.writing-section { margin-top: 58px; }
+.writing-section + .writing-section { margin-top: 72px; }
+
+.writing-section h2 {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .post-list { border-bottom: 1px solid var(--line); }
 
 .post-row {
@@ -517,6 +530,13 @@ input:focus-visible {
 .book-stars .is-filled { color: #f5a623; }
 .book-rating-value { color: #c77d13; font-weight: 600; }
 
+.book-note {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
 .footer {
   width: min(1000px, calc(100vw - 48px));
   margin: 0 auto;
@@ -611,6 +631,8 @@ input:focus-visible {
   .post-row time { grid-column: 1 / -1; }
   .post-row-copy strong { font-size: 1.08rem; }
   .archive-page .page-lede { margin-bottom: 38px; }
+  .writing-section { margin-top: 42px; }
+  .writing-section + .writing-section { margin-top: 56px; }
   .post-meta { margin-bottom: 40px; }
   .post-body { font-size: 1.06rem; line-height: 1.86; }
   .book-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
