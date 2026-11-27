@@ -315,6 +315,7 @@ function doubanSubjectId(book) {
 }
 
 function mergeReadingBooks(importedBooks, curatedBooks) {
+  const curatedAddedAt = "2026-11-26";
   const merged = [];
   const indexesByTitle = new Map();
   const indexesBySubject = new Map();
@@ -343,7 +344,11 @@ function mergeReadingBooks(importedBooks, curatedBooks) {
   }
 
   for (const original of curatedBooks) {
-    const book = { ...original, rating: original.rating ?? 5 };
+    const book = {
+      ...original,
+      rating: original.rating ?? 5,
+      addedAt: original.addedAt || curatedAddedAt
+    };
     const subjectId = doubanSubjectId(book);
     const titleKey = normalizeBookTitle(book.titleZh);
     const existingIndex = indexesBySubject.get(subjectId) ?? indexesByTitle.get(titleKey);
@@ -367,9 +372,11 @@ function mergeReadingBooks(importedBooks, curatedBooks) {
   }
 
   return merged.sort((a, b) => {
-    if (a.readAt && b.readAt) return b.readAt.localeCompare(a.readAt);
-    if (a.readAt) return -1;
-    if (b.readAt) return 1;
+    const aTime = a.readAt || a.addedAt || "";
+    const bTime = b.readAt || b.addedAt || "";
+    if (aTime && bTime) return bTime.localeCompare(aTime);
+    if (aTime) return -1;
+    if (bTime) return 1;
     return 0;
   });
 }
