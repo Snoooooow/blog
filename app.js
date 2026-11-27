@@ -124,6 +124,16 @@ const readingBooks = [
     doubanUrl: "https://book.douban.com/subject/36759480/"
   },
   {
+    titleZh: "10X Is Easier Than 2X",
+    titleEn: "10X Is Easier Than 2X",
+    authorZh: "[美] Dan Sullivan、Benjamin Hardy",
+    authorEn: "Dan Sullivan and Benjamin Hardy",
+    cover: "10x-easier-than-2x.jpg",
+    status: "read",
+    rating: 4,
+    route: "wp-83"
+  },
+  {
     titleZh: "深度学习推荐系统2.0",
     titleEn: "Deep Learning Recommender Systems 2.0",
     authorZh: "王喆",
