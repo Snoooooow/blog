@@ -104,6 +104,7 @@ const readingBooks = [
     authorEn: "Noah Kagan and Tahl Raz",
     cover: "million-dollar-weekend.jpg",
     status: "read",
+    rating: 4,
     doubanUrl: "https://book.douban.com/subject/36759480/"
   },
   {
@@ -230,7 +231,7 @@ function doubanBookSearch(title) {
 function renderBookCard(book) {
   const title = currentLanguage === "en" ? book.titleEn : book.titleZh;
   const author = currentLanguage === "en" ? book.authorEn : book.authorZh;
-  const rating = Number(book.rating) || 0;
+  const rating = Number(book.rating) || 5;
   const stars = Array.from({ length: 5 }, (_, index) => {
     const isFilled = index < rating;
     return `<span class="${isFilled ? "is-filled" : ""}" aria-hidden="true">${isFilled ? "★" : "☆"}</span>`;
