@@ -92,7 +92,7 @@ function localizedArticle(article) {
   return { ...article, ...englishArticles[article.id] };
 }
 
-const readingBooks = [
+const curatedReadingBooks = [
   {
     titleZh: "智能简史",
     titleEn: "A Brief History of Intelligence",
@@ -302,15 +302,85 @@ const readingBooks = [
   }
 ];
 
+function normalizeBookTitle(title = "") {
+  return title
+    .normalize("NFKC")
+    .split(/[:：]/, 1)[0]
+    .replace(/[\s·•《》“”‘’'"()（）\-—–]/g, "")
+    .toLocaleLowerCase();
+}
+
+function doubanSubjectId(book) {
+  return book.doubanSubjectId || book.doubanUrl?.match(/\/subject\/(\d+)/)?.[1] || "";
+}
+
+function mergeReadingBooks(importedBooks, curatedBooks) {
+  const merged = [];
+  const indexesByTitle = new Map();
+  const indexesBySubject = new Map();
+
+  for (const book of importedBooks) {
+    const titleKey = normalizeBookTitle(book.titleZh);
+    const existingIndex = indexesByTitle.get(titleKey);
+
+    if (existingIndex !== undefined) {
+      const existing = merged[existingIndex];
+      const currentIsOlder = book.readAt && (!existing.readAt || book.readAt < existing.readAt);
+      if (currentIsOlder || (existing.rating == null && book.rating != null)) {
+        merged[existingIndex] = {
+          ...existing,
+          ...book,
+          rating: book.rating ?? existing.rating
+        };
+      }
+      continue;
+    }
+
+    indexesByTitle.set(titleKey, merged.length);
+    const subjectId = doubanSubjectId(book);
+    if (subjectId) indexesBySubject.set(subjectId, merged.length);
+    merged.push(book);
+  }
+
+  for (const original of curatedBooks) {
+    const book = { ...original, rating: original.rating ?? 5 };
+    const subjectId = doubanSubjectId(book);
+    const titleKey = normalizeBookTitle(book.titleZh);
+    const existingIndex = indexesBySubject.get(subjectId) ?? indexesByTitle.get(titleKey);
+
+    if (existingIndex === undefined) {
+      indexesByTitle.set(titleKey, merged.length);
+      if (subjectId) indexesBySubject.set(subjectId, merged.length);
+      merged.push(book);
+      continue;
+    }
+
+    const imported = merged[existingIndex];
+    merged[existingIndex] = {
+      ...imported,
+      ...book,
+      rating: imported.rating ?? book.rating,
+      readAt: imported.readAt,
+      doubanUrl: imported.doubanUrl || book.doubanUrl,
+      doubanSubjectId: imported.doubanSubjectId || subjectId
+    };
+  }
+
+  return merged;
+}
+
+const readingBooks = mergeReadingBooks(doubanReadingBooks, curatedReadingBooks);
+
 function doubanBookSearch(title) {
   return `https://search.douban.com/book/subject_search?search_text=${encodeURIComponent(title)}&cat=1001`;
 }
 
 function renderBookCard(book) {
-  const title = currentLanguage === "en" ? book.titleEn : book.titleZh;
-  const author = currentLanguage === "en" ? book.authorEn : book.authorZh;
+  const title = currentLanguage === "en" ? (book.titleEn || book.titleZh) : book.titleZh;
+  const author = currentLanguage === "en" ? (book.authorEn || book.authorZh) : book.authorZh;
   const note = currentLanguage === "en" ? book.noteEn : book.noteZh;
-  const rating = Number(book.rating) || 5;
+  const parsedRating = Number(book.rating);
+  const rating = Number.isFinite(parsedRating) && parsedRating >= 1 && parsedRating <= 5 ? parsedRating : 0;
   const stars = Array.from({ length: 5 }, (_, index) => {
     const isFilled = index < rating;
     return `<span class="${isFilled ? "is-filled" : ""}" aria-hidden="true">${isFilled ? "★" : "☆"}</span>`;
