@@ -66,7 +66,6 @@ const readingNotes = articleIndex.filter((article) => readingNoteIds.has(article
 const writingArticles = articleIndex.filter((article) => !readingNoteIds.has(article.id));
 
 const technicalWritingIds = new Set([
-  "wp-85",
   "wp-78",
   "wp-15",
   "medium-c816723405ec"
